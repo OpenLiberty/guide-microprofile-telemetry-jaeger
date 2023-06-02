@@ -13,10 +13,6 @@
 
 import java.util.Properties;
 
-import io.opentelemetry.api.trace.Tracer;
-import io.opentelemetry.api.trace.Span;
-import io.opentelemetry.context.Scope;
-
 import io.openliberty.guides.inventory.model.InventoryList;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
@@ -33,7 +29,6 @@ import jakarta.ws.rs.core.Response;
 public class InventoryResource {
 
     @Inject InventoryManager manager;
-
 
     @GET
     @Path("/{hostname}")
