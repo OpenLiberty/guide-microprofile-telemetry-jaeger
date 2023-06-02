@@ -7,13 +7,16 @@
         <!-- end::mpTelemetry[] -->
     </featureManager>
 
-    <httpEndpoint httpPort="${default.http.port}" httpsPort="${default.https.port}"
+    <httpEndpoint httpPort="${default.http.port}"
+                  httpsPort="${default.https.port}"
                   id="defaultHttpEndpoint" host="*" />
 
-    <webApplication location="draft-guide-microprofile-telemetry-inventory.war" contextRoot="/">
-        <!-- enable visibility to third party apis -->
+    <webApplication location="guide-microprofile-telemetry-inventory.war"
+                    contextRoot="/">
         <!-- tag::thirdParty[] -->
+        <!-- enable visibility to third party apis -->
         <classloader apiTypeVisibility="+third-party"/>
         <!-- end::thirdParty[] -->
     </webApplication>
+
 </server>
