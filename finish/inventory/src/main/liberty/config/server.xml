@@ -2,7 +2,9 @@
 
     <featureManager>
         <feature>jsonb-3.0</feature>
+        <!-- tag::mpTelemetry[] -->
         <feature>mpTelemetry-1.0</feature>
+        <!-- end::mpTelemetry[] -->
     </featureManager>
 
     <httpEndpoint httpPort="${default.http.port}" httpsPort="${default.https.port}"
@@ -10,6 +12,8 @@
 
     <webApplication location="draft-guide-microprofile-telemetry-inventory.war" contextRoot="/">
         <!-- enable visibility to third party apis -->
+        <!-- tag::thirdParty[] -->
         <classloader apiTypeVisibility="+third-party"/>
+        <!-- end::thirdParty[] -->
     </webApplication>
 </server>
