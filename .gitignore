@@ -1,0 +1,26 @@
+# Maven generated
+target
+
+# Eclipse generated
+.apt_generated/
+.settings/
+.project
+.classpath
+.factorypath
+MANIFEST.MF
+
+# Idea generated
+.idea/
+
+# MacOS system files
+.DS_Store
+
+# Asciidoc rendered
+README.html
+
+# Zip files
+*.zip
+
+# Temporary hiding the docker directory and images
+docker
+resources

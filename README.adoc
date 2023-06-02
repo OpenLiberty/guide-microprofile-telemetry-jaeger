@@ -54,7 +54,7 @@ image::mptelemetry_diagram.png[Functionality Diagram,align="center"]
 
 == Additional prerequisites 
 
-Before you begin, deploy the Jaeger all-in-one executable file to start the Jaeger tracing system. The Jaeger all-in-one executable file is configured for quick local testing. You can find information about the Jaeger server and instructions for starting the all-in-one executable file in the link:https://www.jaegertracing.io/docs/1.39/getting-started/[Jaeger documentation].
+Before you begin, deploy the Jaeger all-in-one executable file to start the Jaeger tracing system. The Jaeger all-in-one executable file is configured for quick local testing. You can find information about the Jaeger server and instructions for starting the all-in-one executable file in the https://www.jaegertracing.io/docs/latest/getting-started[Jaeger documentation].
 
 Before you proceed, make sure that your Jaeger server is up and running. Jaeger can be found at the http://localhost:16686 URL.
 
@@ -135,15 +135,17 @@ Make sure that your Jaeger server is running and point your browser to the http:
 
 When you visit this endpoint, you make two GET HTTP requests, one to the system service and one to the inventory service. Both of these requests are configured to be traced, so a new trace is recorded in Jaeger.
 
-To view the traces, go to the http://localhost:16686 URL. You can view the traces for the inventory or system services under the Search tab. Select the services in the Select a service menu and click the Find Traces button at the end of the section.
+To view the traces, go to the http://localhost:16686 URL. You can view the traces for the `inventory` or `system` services under the **Search** tab. If you only see the **jaeger-query** option listed in the dropdown, you need to wait a little longer and refresh the page to see the application services.
 
-If you only see the jaeger-query option listed in the dropdown, you might need to wait a little longer and refresh the page to see the application services.
-View the traces for inventory. You’ll see the following trace:
+Select the services in the **Select A Service** menu and click the **Find Traces** button at the end of the section. You'll see the result as the following:
+
+image::mptelemetry_result_items.png[Compare traces by selecting result items,align="center"]
+{empty} +
+
+The trace has five spans, four from `inventory` service and one from `system` service. Click the trace to view its details. Under **Service & Operation**, you see the spans in this trace. You can inspect each span by clicking it to reveal more detailed information, such as the time at which a request was received and the time at which a response was sent back.
 
 image::mptelemetry_inventory_manual_span.png[Spans Output Final,align="center"]
 {empty} +
-
-The trace has five spans, four from inventory and one from system. Click the trace to view its details. Under Service & Operation, you see the spans in this trace. You can inspect each span by clicking it to reveal more detailed information, such as the time at which a request was received and the time at which a response was sent back.
 
 After you’re finished reviewing the application, stop the Open Liberty servers by pressing `CTRL+C` in the command-line sessions where you ran the `system` and `inventory` services. Alternatively, you can run the following goals from the `finish` directory in another command-line session:
 
