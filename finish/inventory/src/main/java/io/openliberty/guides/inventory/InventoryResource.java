@@ -46,11 +46,11 @@ public class InventoryResource {
         Properties props = manager.get(hostname);
         try (Scope scope = getPropertiesSpan.makeCurrent()) {
             if (props == null) {
-                 getPropertiesSpan.addEvent("Cannot get properties");
-                 return Response.status(Response.Status.NOT_FOUND)
-                                .entity("{ \"error\" : \"Unknown hostname or the system " +
-                                    "service may not be running on " + hostname + "\" }")
-                                .build();
+                getPropertiesSpan.addEvent("Cannot get properties");
+                return Response.status(Response.Status.NOT_FOUND)
+                         .entity("{ \"error\" : \"Unknown hostname or the system " +
+                                 "service may not be running on " + hostname + "\" }")
+                         .build();
             }
             getPropertiesSpan.addEvent("Received properties");
             manager.add(hostname, props);

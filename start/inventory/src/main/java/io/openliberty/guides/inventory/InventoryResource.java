@@ -30,7 +30,6 @@ import jakarta.ws.rs.core.Response;
 
 @RequestScoped
 @Path("/systems")
-
 public class InventoryResource {
 
     @Inject InventoryManager manager;
@@ -41,15 +40,14 @@ public class InventoryResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getPropertiesForHost(@PathParam("hostname") String hostname) {
         Properties props = manager.get(hostname);
-                if (props == null) {
-                    return Response.status(Response.Status.NOT_FOUND)
-                                .entity("{ \"error\" : \"Unknown hostname or the system "
-                                + "service may not be running on " + hostname + "\" }")
-                                .build();
-                }
-                manager.add(hostname, props);
+        if (props == null) {
+            return Response.status(Response.Status.NOT_FOUND)
+                           .entity("{ \"error\" : \"Unknown hostname or the system " +
+                               "service may not be running on " + hostname + "\" }")
+                           .build();
+        }
+        manager.add(hostname, props);
         return Response.ok(props).build();
-        
     }
 
     @GET
@@ -62,7 +60,6 @@ public class InventoryResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response clearContents() {
         int cleared = manager.clear();
-
         if (cleared == 0) {
             return Response.status(Response.Status.NOT_MODIFIED)
                     .build();
