@@ -1,16 +1,14 @@
-<server description="system service">
+<server description="inventory service">
 
     <featureManager>
-        <feature>cdi-4.0</feature>
         <feature>jsonb-3.0</feature>
-        <feature>restfulWS-3.1</feature>
     </featureManager>
 
     <httpEndpoint httpPort="${default.http.port}"
                   httpsPort="${default.https.port}"
                   id="defaultHttpEndpoint" host="*" />
 
-    <webApplication location="guide-microprofile-telemetry-system.war"
+    <webApplication location="guide-microprofile-telemetry-inventory.war"
                     contextRoot="/" />
 
 </server>

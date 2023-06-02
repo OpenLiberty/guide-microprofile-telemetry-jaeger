@@ -1,4 +1,4 @@
-<server description="Sample Liberty server">
+<server description="inventory service">
 
     <featureManager>
         <feature>jsonb-3.0</feature>
