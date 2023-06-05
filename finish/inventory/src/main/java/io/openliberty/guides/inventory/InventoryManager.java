@@ -44,8 +44,13 @@ public class InventoryManager {
         return properties;
     }
 
+    // tag::addWithSpan[]
     @WithSpan
-    public void add(@SpanAttribute(value = "hostname") String hostname, Properties systemProps) {
+    // tag::spanAttribute[]
+    public void add(@SpanAttribute(value = "hostname") String hostname,
+    // end::spanAttribute[]
+                    Properties systemProps) {
+    // end::addWithSpan[]
         Properties props = new Properties();
         props.setProperty("os.name", systemProps.getProperty("os.name"));
         props.setProperty("user.name", systemProps.getProperty("user.name"));
@@ -55,8 +60,10 @@ public class InventoryManager {
         }
     }
 
-    @WithSpan("list")
+    // tag::listWithSpan[]
+    @WithSpan("listInventory")
     public InventoryList list() {
+    // end::listWithSpan[]
         return new InventoryList(systems);
     }
 

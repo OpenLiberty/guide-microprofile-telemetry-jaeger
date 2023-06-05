@@ -375,7 +375,7 @@ Use the [hotspot=addEvent1 hotspot=addEvent2 file=0]`addEvent()` Span API to cre
 
 You can also create new spans by annotating methods with a `@WithSpan` annotation.
 
-[role="code_command hotspot file=0", subs="quotes"]
+[role="code_command hotspot file=1", subs="quotes"]
 ----
 #Replace the `InventoryManager` class.#
 `inventory/src/main/java/io/openliberty/guides/inventory/InventoryManager.java`
@@ -387,9 +387,9 @@ InventoryManager.java
 include::finish/inventory/src/main/java/io/openliberty/guides/inventory/InventoryManager.java[]
 ----
 
-Annotate the `add()` method with the `@WithSpan` annotation and the `hostname` parameter with the `@SpanAttribute annotation` annotation to indicate that it is part of the trace.
+Annotate the `add()` method with the [hotspot=addWithSpan file=1]`@WithSpan` annotation and the `hostname` parameter with the [hotspot=spanAttribute file=1]`@SpanAttribute` annotation to indicate that it is part of the trace.
 
-To customize a span name, you can annotate the `list()` method by the `@WithSpan` annotation with a value.
+To customize a span name, you can annotate the `list()` method by the [hotspot=listInventory file=1]`@WithSpan` annotation with a value.
 
 
 Navigate your browser to the http://localhost:9081/inventory/systems/localhost URL.
