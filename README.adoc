@@ -296,7 +296,7 @@ include::finish/inventory/src/main/resources/META-INF/microprofile-config.proper
 
 Simiarly, specify the [hotspot=otel file=3]`otel` properties for the `inventory` service.
 
-For more information on these properties, see https://openliberty.io/docs/latest/microprofile-config-properties.html#telemetry[MicroProfile Telemetry Config properties^].
+For more information about these and other Telemetry properties, see the https://openliberty.io/docs/latest/microprofile-config-properties.html#telemetry[MicroProfile Config properties for MicroProfile Telemetry^] documentation.
 
 === Collect traces using automatic instrumentation
 
