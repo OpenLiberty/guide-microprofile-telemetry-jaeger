@@ -337,7 +337,7 @@ The OpenTelemetry API and OpenTelemetry Instrumentation Annotations must be prov
 ----
 
 inventory/server.xml
-[source, xml, linenums, role='code_column hide_tags=thirdParty']
+[source, xml, linenums, role='code_column']
 ----
 include::finish/inventory/src/main/liberty/config/server.xml[]
 ----
