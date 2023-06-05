@@ -232,16 +232,69 @@ When the servers start, you can find the system and inventory services at the fo
 // =================================================================================================
 == Enabling Telemetry implementation 
 
-server.xml
+Navigate to the `start` directory to begin.
+
+MicroProfile Telemetry allows you to observe traces without modifying source code in your Jakarta RESTful applications. You can enable `mpTelemetry` feature in the `server.xml` configuration file.
+
+[role="code_command hotspot file=0", subs="quotes"]
+----
+#Replace the `server.xml` file.#
+`system/src/main/liberty/config/server.xml`
+----
+
+system/server.xml
+[source, xml, linenums, role='code_column']
+----
+include::finish/system/src/main/liberty/config/server.xml[]
+----
+
+Enable [hotspot=mpTelemetry file=0]`mpTelemetry` feature in the `server.xml` of the `system` service.
+
+[role="code_command hotspot file=1", subs="quotes"]
+----
+#Replace the `server.xml` file.#
+`inventory/src/main/liberty/config/server.xml`
+----
+
+inventory/server.xml
 [source, xml, linenums, role='code_column']
 ----
 include::finish/inventory/src/main/liberty/config/server.xml[]
 ----
 
-MicroProfile Telemetry allows you to observe traces without modifying source code in your Jakarta RESTful web service (aka JAX-RS) applications.
-You can enable [hotspot=mpTelemetry file=0]`mpTelemetry` feature in the `server.xml` of the `inventory` service.
+Enable [hotspot=mpTelemetry file=1]`mpTelemetry` feature in the `server.xml` of the `inventory` service.
 
-By default, MicroProfile Telemetry tracing is off. To enable any tracing aspects, specify ```otel.sdk.disabled=false``` as a config property or ```OTEL_SDK_DISABLED=false``` as an environment property for your server.
+
+By default, MicroProfile Telemetry tracing is off. To enable any tracing aspects, specify the `otel` properties in the MicroProfile configuration file. 
+
+[role="code_command hotspot file=2", subs="quotes"]
+----
+#Create the `microprofile-config.properties` file.#
+`system/src/main/liberty/config/server.xml`
+----
+
+system/microprofile-config.properties
+[source, xml, linenums, role='code_column']
+----
+include::finish/system/src/main/resources/META-INF/microprofile-config.properties[]
+----
+
+Specify the [hotspot=service file=2]`otel.service.name` property with the service name, set the [hotspot=disabled file=2]`otel.sdk.disabled` property with `false` to enable tracing, and specify the [hotspot=exporter file=2]`otel.traces.exporter` property with the `jaeger` for using Jaeger tracing system.
+
+
+[role="code_command hotspot file=3", subs="quotes"]
+----
+#Create the `microprofile-config.properties` file.#
+`inventory/src/main/resources/META-INF/microprofile-config.properties`
+----
+
+inventory/microprofile-config.properties
+[source, xml, linenums, role='code_column']
+----
+include::finish/inventory/src/main/resources/META-INF/microprofile-config.properties[]
+----
+
+Simiarly, enable the [hotspot=otel file=3]`otel` properties for the `inventory` service.
 
 For more information on these properties, see https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/sdk-environment-variables.md[OpenTelemetry configuration documentation^].
 
