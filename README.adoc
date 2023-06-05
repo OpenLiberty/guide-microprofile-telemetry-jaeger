@@ -298,23 +298,9 @@ Simiarly, specify the [hotspot=otel file=3]`otel` properties for the `inventory`
 
 For more information about these and other Telemetry properties, see the https://openliberty.io/docs/latest/microprofile-config-properties.html#telemetry[MicroProfile Config properties for MicroProfile Telemetry^] documentation.
 
-=== Collect traces using automatic instrumentation
+To run the `system` and `inventory` services, simply navigate your browser to the http://localhost:9081/inventory/systems/localhost URL.
 
-To begin, open a new command-line session and navigate to the `system` directory:
-
-```
-cd system
-```
-
-Start the `system` service:
-
-```
-mvn liberty:run
-```
-
-Navigate to the http://localhost:9080/system/properties endpoint.
-
-A span for this request will be automatically created by MicroProfile Telemetry. Check for the span in your chosen exporter’s endpoint like following:
+To view the traces, go to the http://localhost:16686 URL. You can view the traces for the `inventory` or `system` services under the **Search** tab. Select the services in the **Select A Service** menu and click the **Find Traces** button at the end of the section. You'll see the result as the following:
 
 image::mptelemetry_system_span.png[System Spans,align="center"]
 {empty} +
