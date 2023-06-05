@@ -365,72 +365,41 @@ include::finish/inventory/src/main/java/io/openliberty/guides/inventory/Inventor
 
 To access the Tracer, inject it into a bean by using the [hotspot=inject file=0]`@Inject` annotation from the Contexts and Dependency Injections API.
 
-Before the [hotspot=manager hotspot=getSystem file=0]`InventoryManager` to call the `system` service, create and start a span called `GettingProperties` by using the `spanBuilder()` and `startSpan()` Tracer APIs.
+Before the [hotspot=manager hotspot=getSystem file=0]`InventoryManager` to call the `system` service, create and start a span called [hotspot=getPropertiesSpan file=0]`GettingProperties` by using the `spanBuilder()` and `startSpan()` Tracer APIs.
 
 The [hotspot=try file=0]`try` block is called a `try-with-resources` statement that the `scope` object is closed at the end of the statement. It’s good practice to define custom spans inside such statements. Otherwise, any exceptions that are thrown before the span closes will leak the active span.
 
-Use the [hotspot=addEvent1 hotspot=addEvent2 file=0]`addEvent()` Span API to create an event when the properties are received and fails to get the properties from the `system` service with `hostname`. Use the [hotspot=end file=0]`end()` Span API to mark the span completed.
+Use the [hotspot=addEvent1 hotspot=addEvent2 file=0]`addEvent()` Span API to create an event when the properties are received and an event when fails to get the properties from the [hotspot=manager hotspot=getSystem file=0]`system` service. Use the [hotspot=end file=0]`end()` Span API to mark the `GettingProperties` span completed.
 
 
 
-```
-getPropertiesSpan = tracer.spanBuilder("GettingProperties").startSpan();
-Properties props = manager.get(hostname);
-try(Scope scope = getPropertiesSpan.makeCurrent()){
-    ...
-    getPropertiesSpan.addEvent("Received properties");
-}
-finally{
-    getPropertiesSpan.end();
-}
-```
+You can also create new spans by annotating methods with a `@WithSpan` annotation.
 
-InventoryResource.java
-[source, java, linenums, role='code_column']
+[role="code_command hotspot file=0", subs="quotes"]
 ----
-include::finish/inventory/src/main/java/io/openliberty/guides/inventory/InventoryResource.java[]
+#Replace the `InventoryManager` class.#
+`inventory/src/main/java/io/openliberty/guides/inventory/InventoryManager.java`
 ----
-
-You can also create new spans by annotating methods in any Jakarta CDI beans using @WithSpan. The InventoryManager.java file in the demo application creates a span when a new system is added to the inventory. The hostname method parameter is annotated with the @SpanAttribute annotation to indicate that it is part of the trace:
-
-```
-@WithSpan
-public void add(@SpanAttribute(value = "hostname") String hostname, Properties systemProps) {
-    ...
-}
-```
 
 InventoryManager.java
-[source, java, linenums, role='code_column']
+[source, java, linenums, role='code_column hide_tags=copyright']
 ----
 include::finish/inventory/src/main/java/io/openliberty/guides/inventory/InventoryManager.java[]
 ----
 
-A span created using the @WithSpan annotation can be given a name. For example, this span is given the name list:
+Annotate the `add()` method with the `@WithSpan` annotation and the `hostname` parameter with the `@SpanAttribute annotation` annotation to indicate that it is part of the trace.
 
-```
-@WithSpan("list")
-public InventoryList list() {
-    ...
-}
-```
+To customize a span name, you can annotate the `list()` method by the `@WithSpan` annotation with a value.
 
-InventoryManager.java
-[source, java, linenums, role='code_column']
-----
-include::finish/inventory/src/main/java/io/openliberty/guides/inventory/InventoryManager.java[]
-----
 
-Now that you created the spans manually, we can build the inventory service and deploy it to Open Liberty:
+Navigate your browser to the http://localhost:9081/inventory/systems/localhost URL.
 
-```
-cd inventory
-mvn liberty:run
-```
+You should see five spans in the exporter’s endpoint: four spans from inventory and one span from system, as shown in the following example:
 
-Navigate to the inventory endpoint:
+image::mptelemetry_inventory_manual_span.png[Spans Output Final,align="center"]
+{empty} +
 
-http://localhost:9081/inventory/systems/localhost
+Navigate your browser to the http://localhost:9081/inventory/systems URL.
 
 You should see five spans in the exporter’s endpoint: four spans from inventory and one span from system, as shown in the following example:
 
@@ -439,7 +408,7 @@ image::mptelemetry_inventory_manual_span.png[Spans Output Final,align="center"]
 
 These spans are all part of one single trace that is emitted from the request to the endpoint. It is therefore easier to identify the source of inaccuracy or latency in a single request by debugging spans individually.
 
-For more information, see link:https://opentelemetry.io/docs/instrumentation/java/manual/[OpenTelemetry’s manual instrumentation documentation].
+To learn more how to use OpenTelemetry APIs to instrument code, see the https://opentelemetry.io/docs/instrumentation/java/manual/[OpenTelemetry Manual Instrumentation] documentation.
 
 // =================================================================================================
 // Testing the application 
