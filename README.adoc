@@ -270,7 +270,7 @@ By default, MicroProfile Telemetry tracing is off. To enable any tracing aspects
 [role="code_command hotspot file=2", subs="quotes"]
 ----
 #Create the `microprofile-config.properties` file.#
-`system/src/main/liberty/config/server.xml`
+`system/src/main/resources/META-INF/microprofile-config.properties`
 ----
 
 system/microprofile-config.properties
@@ -279,7 +279,7 @@ system/microprofile-config.properties
 include::finish/system/src/main/resources/META-INF/microprofile-config.properties[]
 ----
 
-Specify the [hotspot=service file=2]`otel.service.name` property with the service name, set the [hotspot=disabled file=2]`otel.sdk.disabled` property with `false` to enable tracing, and specify the [hotspot=exporter file=2]`otel.traces.exporter` property with the `jaeger` for using Jaeger tracing system.
+Specify the [hotspot=service file=2]`otel.service.name` property with the `system` service name, set the [hotspot=disabled file=2]`otel.sdk.disabled` property with `false` to enable tracing, and specify the [hotspot=exporter file=2]`otel.traces.exporter` property with `jaeger` for using Jaeger tracing system.
 
 
 [role="code_command hotspot file=3", subs="quotes"]
@@ -294,9 +294,9 @@ inventory/microprofile-config.properties
 include::finish/inventory/src/main/resources/META-INF/microprofile-config.properties[]
 ----
 
-Simiarly, enable the [hotspot=otel file=3]`otel` properties for the `inventory` service.
+Simiarly, specify the [hotspot=otel file=3]`otel` properties for the `inventory` service.
 
-For more information on these properties, see https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/sdk-environment-variables.md[OpenTelemetry configuration documentation^].
+For more information on these properties, see https://openliberty.io/docs/latest/microprofile-config-properties.html#telemetry[MicroProfile Telemetry Config properties^].
 
 === Collect traces using automatic instrumentation
 
