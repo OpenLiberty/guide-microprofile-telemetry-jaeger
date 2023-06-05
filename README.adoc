@@ -257,7 +257,7 @@ Enable [hotspot=mpTelemetry file=0]`mpTelemetry` feature in the `server.xml` of 
 ----
 
 inventory/server.xml
-[source, xml, linenums, role='code_column']
+[source, xml, linenums, role='code_column hide_tags=thirdParty']
 ----
 include::finish/inventory/src/main/liberty/config/server.xml[]
 ----
@@ -308,22 +308,19 @@ image::mptelemetry_system_span.png[System Spans,align="center"]
 // =================================================================================================
 // Manually create traces 
 // =================================================================================================
-== Manually create traces 
+== Enabling explicit distributed tracing
 
-Automatic instrumentation only instruments Jakarta RESTful web service applications. To get further spans on other operations, such as database calls, you can add manual instrumentation to the source code.
+Automatic instrumentation only instruments Jakarta RESTful web services and MicroProfile REST clients. To get further spans on other operations, such as database calls, you can add manual instrumentation to the source code.
 
-=== Enabling OpenTelemetry API and OpenTelemetry Instrumentation Annotations 
+=== Enabling OpenTelemetry APIs
 
-The OpenTracing API is exposed as a third-party API in Open Liberty. To add the visibility of OpenTracing APIs to the application, add third-party to the types of API packages that this class loader supports. 
+The MicroProfile Telemetry feature has been enabled tracing of all REST endpoints by default in the previous section. To further control and customize traces, use the `@Traced` annotation to enable particular methods. You can also inject a custom `Tracer` object to create and customize spans.
 
-server.xml
-[source, xml, linenums, role='code_column']
+[role="code_command hotspot file=0", subs="quotes"]
 ----
-include::finish/inventory/src/main/liberty/config/server.xml[]
+#Replace the `pom.xml` Maven project file of the inventory service.#
+`inventory/pom.xml`
 ----
-
-Third-party APIs must be made visible for your application in the [hotspot=thirdParty file=0]`server.xml`:
-
 
 pom.xml
 [source, xml, linenums, role='code_column']
@@ -331,7 +328,22 @@ pom.xml
 include::finish/inventory/pom.xml[]
 ----
 
-The OpenTelemetry API and OpenTelemetry Instrumentation Annotations must be provided as dependencies to your build path. Add the the [hotspot=opentelemetry file=1] `pom.xml` file.
+The OpenTelemetry API and OpenTelemetry Instrumentation Annotations must be provided as dependencies to your build path. Add two [hotspot=opentelemetry file=0]`io.opentelemetry` dependencies in your `pom.xml` Maven project file.
+
+[role="code_command hotspot file=1", subs="quotes"]
+----
+#Replace the `server.xml` file of the inventory service.#
+`inventory/src/main/liberty/config/server.xml`
+----
+
+inventory/server.xml
+[source, xml, linenums, role='code_column hide_tags=thirdParty']
+----
+include::finish/inventory/src/main/liberty/config/server.xml[]
+----
+
+The OpenTelemetry APIs are exposed as third-party APIs in Open Liberty. To add the visibility of OpenTelemetry APIs to the application, add `third-party` to the types of API packages that this class loader supports. Instead of explicitly configuring a list of API packages that includes `third-party`, set the `+third-party` value to the [hotspot=thirdParty file=1]`apiTypeVisibility` attribute in the [hotspot=thirdParty file=1]`classLoader` configuration. This configuration adds `third-party` to the default list of API package types that are supported.
+
 
 
 === Manual instrumentation of application code 
