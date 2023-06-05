@@ -346,29 +346,32 @@ The OpenTelemetry APIs are exposed as third-party APIs in Open Liberty. To add t
 
 
 
-=== Manual instrumentation of application code 
+=== Injecting a custom Tracer object
 
-Now you are all set to instrument your code to manually create traces. 
+The MicroProfile Telemetry specification also makes the underlying OpenTelemetry Tracer instance available. The configured Tracer is accessed by injecting it into a bean. You can use it to instrument your code to create traces.
 
-Use the `@Traced` annotation to define explicit span creation for specific classes and methods. If you place the annotation on a class, then the annotation is automatically applied to all methods within that class. If you place the annotation on a method, then the annotation overrides the class annotation if one exists.
 
-Start by injecting a `Tracer` and `Span` object:
-
-```
-@Inject
-Tracer tracer;
-
-@Inject
-Span getPropertiesSpan;
-```
+[role="code_command hotspot file=0", subs="quotes"]
+----
+#Replace the `InventoryResource` class.#
+`inventory/src/main/java/io/openliberty/guides/inventory/InventoryResource.java`
+----
 
 InventoryResource.java
-[source, java, linenums, role='code_column']
+[source, java, linenums, role='code_column hide_tags=copyright']
 ----
 include::finish/inventory/src/main/java/io/openliberty/guides/inventory/InventoryResource.java[]
 ----
 
-This can then be used to create spans. For example, a span called GettingProperties starts and an event is added before the system service is called:
+To access the Tracer, inject it into a bean by using the [hotspot=inject file=0]`@Inject` annotation from the Contexts and Dependency Injections API.
+
+Before the [hotspot=manager hotspot=getSystem file=0]`InventoryManager` to call the `system` service, create and start a span called `GettingProperties` by using the `spanBuilder()` and `startSpan()` Tracer APIs.
+
+The [hotspot=try file=0]`try` block is called a `try-with-resources` statement that the `scope` object is closed at the end of the statement. It’s good practice to define custom spans inside such statements. Otherwise, any exceptions that are thrown before the span closes will leak the active span.
+
+Use the [hotspot=addEvent1 hotspot=addEvent2 file=0]`addEvent()` Span API to create an event when the properties are received and fails to get the properties from the `system` service with `hostname`. Use the [hotspot=end file=0]`end()` Span API to mark the span completed.
+
+
 
 ```
 getPropertiesSpan = tracer.spanBuilder("GettingProperties").startSpan();

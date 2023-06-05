@@ -33,30 +33,44 @@ import jakarta.ws.rs.core.Response;
 @Path("/systems")
 public class InventoryResource {
 
+    // tag::manager[]
     @Inject InventoryManager manager;
+    // end::manager[]
 
+    // tag::inject[]
     @Inject
     Tracer tracer;
+    // end::inject[]
 
     @GET
     @Path("/{hostname}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getPropertiesForHost(@PathParam("hostname") String hostname) {
         Span getPropertiesSpan = tracer.spanBuilder("GettingProperties").startSpan();
+        // tag::getSystem[]
         Properties props = manager.get(hostname);
+        // end::getSystem[]
+        // tag::try[]
         try (Scope scope = getPropertiesSpan.makeCurrent()) {
             if (props == null) {
+                // tag::addEvent1[]
                 getPropertiesSpan.addEvent("Cannot get properties");
+                // end::addEvent1[]
                 return Response.status(Response.Status.NOT_FOUND)
                          .entity("{ \"error\" : \"Unknown hostname or the system " +
                                  "service may not be running on " + hostname + "\" }")
                          .build();
             }
+            // tag::addEvent2[]
             getPropertiesSpan.addEvent("Received properties");
+            // end::addEvent2[]
             manager.add(hostname, props);
         } finally {
+            // tag::end[]
             getPropertiesSpan.end();
+            // end::end[]
         }
+        // end::try[]
         return Response.ok(props).build();
 
     }
