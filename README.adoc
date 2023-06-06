@@ -421,12 +421,23 @@ A few tests are included for you to test the basic functionality of the services
 
 === Running the tests
 
-Since you started Open Liberty in dev mode, run the tests for the system and inventory services by pressing the enter/return key in the command-line sessions where you started the services.
+Since you started Open Liberty in dev mode, run the tests for the system and inventory services by pressing the `enter/return` key in the command-line sessions where you started the services.
 
-When you are done checking out the services, exit dev mode by pressing ```CTRL+C``` in the shell sessions where you ran the system and inventory services, or by typing ```q``` and then pressing the ```enter/return``` key.
+When you are done checking out the services, exit dev mode by pressing `CTRL+C` in the shell sessions where you ran the system and inventory services, or by typing `q` and then pressing the `enter/return` key.
 
-Finally, stop the Jaeger service that you started in the Additional prerequisites section.
+// static guide instructions:
+ifndef::cloud-hosted[]
+Finally, stop the `Jaeger` service that you started in the **Additional prerequisites** section.
+endif::[]
 
+// cloud-hosted guide instructions:
+ifdef::cloud-hosted[]
+Finally, stop the ***Jaeger*** service that you started in the previous step.
+```bash
+docker stop jaeger
+docker rm jaeger
+```
+endif::[]
 
 // =================================================================================================
 // Great work! You're done!
@@ -434,6 +445,8 @@ Finally, stop the Jaeger service that you started in the Additional prerequisite
 
 == Great work! You're done!
 
-You developed an application that creates and manages traces using MicroProfile Telemetry 1.0 and Open Liberty.
+You just used MicroProfile Telemetry in Open Liberty to customize how and which traces are delivered to Jaeger.
+
+Try out one of the related MicroProfile guides. These guides demonstrate more technologies that you can learn to expand on what you built in this guide.
 
 include::{common-includes}/attribution.adoc[subs="attributes"]
