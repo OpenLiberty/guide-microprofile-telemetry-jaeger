@@ -302,8 +302,8 @@ To run the `system` and `inventory` services, simply navigate your browser to th
 
 To view the traces, go to the http://localhost:16686 URL. You can view the traces for the `inventory` or `system` services under the **Search** tab. Select the services in the **Select A Service** menu and click the **Find Traces** button at the end of the section. You'll see the result as the following:
 
-image::mptelemetry_system_span.png[System Spans,align="center"]
-{empty} +
+image::mptelemetry_default_spans.png[Default spans,align="center"]
+
 
 // =================================================================================================
 // Manually create traces 
