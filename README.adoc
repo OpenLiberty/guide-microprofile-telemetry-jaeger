@@ -304,6 +304,7 @@ To view the traces, go to the http://localhost:16686 URL. You can view the trace
 
 image::mptelemetry_default_spans.png[Default spans,align="center"]
 
+image::mptelemetry_detail_default_spans.png[Detail default spans,align="center"]
 
 // =================================================================================================
 // Manually create traces 
