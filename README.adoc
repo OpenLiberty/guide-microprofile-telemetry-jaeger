@@ -43,7 +43,7 @@ Traces represent requests and consist of multiple spans. Spans are representativ
 
 Context is an immutable object contained in the span data to identify the unique request that each span is a part of. This data is required for moving trace information across service boundaries, allowing developers to follow a single request through a potentially complex distributed system. Exporters are components that send data to a backend service so you can visualise and monitor the generated spans.
 
-You'll configure the provided `inventory` and `system` services to use https://www.jaegertracing.io/[Jaeger] for distributed tracing with MicroProfile OpenTracing. You'll run these services in two separate JVMs made of two server instances to demonstrate tracing in a distributed environment. If all the components were run on a single server, then any logging software would be sufficient.
+You'll configure the provided `inventory` and `system` services to use https://www.jaegertracing.io/[Jaeger] for distributed tracing with MicroProfile Telemetry. You'll run these services in two separate JVMs made of two server instances to demonstrate tracing in a distributed environment. If all the components were run on a single server, then any logging software would be sufficient.
 
 image::mptelemetry_diagram.png[Functionality Diagram,align="center"]
 
