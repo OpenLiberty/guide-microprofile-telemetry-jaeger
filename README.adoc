@@ -306,6 +306,7 @@ image::mptelemetry_default_spans.png[Default spans,align="center"]
 {empty} +
 
 Verify that there are two spans from `inventory` service and one span from `system` service:
+
 image::mptelemetry_detail_default_spans.png[Detail default spans,align="center"]
 
 // =================================================================================================
