@@ -46,7 +46,7 @@ Context is an immutable object contained in the span data to identify the unique
 You'll configure the provided `inventory` and `system` services to use https://www.jaegertracing.io/[Jaeger] for distributed tracing with MicroProfile OpenTracing. You'll run these services in two separate JVMs made of two server instances to demonstrate tracing in a distributed environment. If all the components were run on a single server, then any logging software would be sufficient.
 
 image::mptelemetry_diagram.png[Functionality Diagram,align="center"]
-{empty} +
+
 
 // =================================================================================================
 //  Additional prerequisites 
@@ -140,12 +140,12 @@ To view the traces, go to the http://localhost:16686 URL. You can view the trace
 Select the services in the **Select A Service** menu and click the **Find Traces** button at the end of the section. You'll see the result as the following:
 
 image::mptelemetry_result_items.png[Get traces by selecting result items,align="center"]
-{empty} +
+
 
 The trace has five spans, four from `inventory` service and one from `system` service. Click the trace to view its details. Under **Service & Operation**, you see the spans in this trace. You can inspect each span by clicking it to reveal more detailed information, such as the time at which a request was received and the time at which a response was sent back.
 
 image::mptelemetry_inventory_manual_span.png[Inventory detail spans,align="center"]
-{empty} +
+
 
 After you’re finished reviewing the application, stop the Open Liberty servers by pressing `CTRL+C` in the command-line sessions where you ran the `system` and `inventory` services. Alternatively, you can run the following goals from the `finish` directory in another command-line session:
 
@@ -303,7 +303,7 @@ To run the `system` and `inventory` services, simply navigate your browser to th
 To view the traces, go to the http://localhost:16686 URL. You can view the traces for the `inventory` or `system` services under the **Search** tab. Select the services in the **Select A Service** menu and click the **Find Traces** button at the end of the section. You'll see the result as the following:
 
 image::mptelemetry_default_spans.png[Default spans,align="center"]
-{empty} +
+
 
 Verify that there are two spans from `inventory` service and one span from `system` service. Click the trace to view its details.
 
@@ -400,23 +400,23 @@ Navigate your browser to the http://localhost:9081/inventory/systems/localhost U
 To view the traces, go to the http://localhost:16686 URL. Select the `inventory` service in the **Service** dropdown list and click the **Find Traces** button at the end of the section. You'll see the result as the following:
 
 image::mptelemetry_result_items.png[Get inventory traces,align="center"]
-{empty} +
+
 
 Verify that there are four spans from `inventory` service and one span from `system` service. Click the trace to view its details.
 
 image::mptelemetry_inventory_manual_span.png[Inventory detail spans,align="center"]
-{empty} +
+
 
 Navigate your browser to the http://localhost:9081/inventory/systems URL.
 
 Go to the http://localhost:16686 URL. Select the `inventory` service in the **Service** dropdown list and click the **Find Traces** button at the end of the section. You'll see the result as the following:
 
 image::mptelemetry_inventory_manager_span.png[Inventory list span,align="center"]
-{empty} +
+
 
 Verify that there a span from the `inventory` service. Click the trace to view its details.
 image::mptelemetry_inventory_manager_span.png[Inventory list span,align="center"]
-{empty} +
+
 
 To learn more how to use OpenTelemetry APIs to instrument code, see the https://opentelemetry.io/docs/instrumentation/java/manual/[OpenTelemetry Manual Instrumentation] documentation.
 
