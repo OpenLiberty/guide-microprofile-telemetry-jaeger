@@ -9,7 +9,6 @@
  * SPDX-License-Identifier: EPL-2.0
  *******************************************************************************/
 // end::copyright[]
-
 package io.openliberty.guides.inventory;
 
 import java.util.Properties;
@@ -59,8 +58,8 @@ public class InventoryResource {
                 getPropertiesSpan.addEvent("Cannot get properties");
                 // end::addEvent1[]
                 return Response.status(Response.Status.NOT_FOUND)
-                         .entity("{ \"error\" : \"Unknown hostname or the system " +
-                                 "service may not be running on " + hostname + "\" }")
+                         .entity("{ \"error\" : \"Unknown hostname or the system "
+                               + "service may not be running on " + hostname + "\" }")
                          .build();
             }
             // tag::addEvent2[]
