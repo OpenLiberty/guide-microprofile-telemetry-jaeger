@@ -305,12 +305,12 @@ To view the traces, go to the http://localhost:16686 URL. You can view the trace
 image::mptelemetry_default_spans.png[Default spans,align="center"]
 {empty} +
 
-Verify that there are two spans from `inventory` service and one span from `system` service:
+Verify that there are two spans from `inventory` service and one span from `system` service. Click the trace to view its details.
 
 image::mptelemetry_detail_default_spans.png[Detail default spans,align="center"]
 
 // =================================================================================================
-// Manually create traces 
+// Enabling explicit distributed tracing
 // =================================================================================================
 == Enabling explicit distributed tracing
 
@@ -318,7 +318,7 @@ Automatic instrumentation only instruments Jakarta RESTful web services and Micr
 
 === Enabling OpenTelemetry APIs
 
-The MicroProfile Telemetry feature has been enabled tracing of all REST endpoints by default in the previous section. To further control and customize traces, use the `@Traced` annotation to enable particular methods. You can also inject a custom `Tracer` object to create and customize spans.
+The MicroProfile Telemetry feature has been enabled tracing of all REST endpoints by default in the previous section. To further control and customize traces, use the `@WithSpan` annotation to enable particular methods. You can also inject a custom `Tracer` object to create and customize spans.
 
 [role="code_command hotspot file=0", subs="quotes"]
 ----
@@ -352,34 +352,9 @@ The OpenTelemetry APIs are exposed as third-party APIs in Open Liberty. To add t
 
 === Injecting a custom Tracer object
 
-The MicroProfile Telemetry specification also makes the underlying OpenTelemetry Tracer instance available. The configured Tracer is accessed by injecting it into a bean. You can use it to instrument your code to create traces.
-
+You can create new spans by annotating methods with a `@WithSpan` annotation.
 
 [role="code_command hotspot file=0", subs="quotes"]
-----
-#Replace the `InventoryResource` class.#
-`inventory/src/main/java/io/openliberty/guides/inventory/InventoryResource.java`
-----
-
-InventoryResource.java
-[source, java, linenums, role='code_column hide_tags=copyright']
-----
-include::finish/inventory/src/main/java/io/openliberty/guides/inventory/InventoryResource.java[]
-----
-
-To access the Tracer, inject it into a bean by using the [hotspot=inject file=0]`@Inject` annotation from the Contexts and Dependency Injections API.
-
-Before the [hotspot=manager hotspot=getSystem file=0]`InventoryManager` to call the `system` service, create and start a span called [hotspot=getPropertiesSpan file=0]`GettingProperties` by using the `spanBuilder()` and `startSpan()` Tracer APIs.
-
-The [hotspot=try file=0]`try` block is called a `try-with-resources` statement that the `scope` object is closed at the end of the statement. It’s good practice to define custom spans inside such statements. Otherwise, any exceptions that are thrown before the span closes will leak the active span.
-
-Use the [hotspot=addEvent1 hotspot=addEvent2 file=0]`addEvent()` Span API to create an event when the properties are received and an event when fails to get the properties from the [hotspot=manager hotspot=getSystem file=0]`system` service. Use the [hotspot=end file=0]`end()` Span API to mark the `GettingProperties` span completed.
-
-
-
-You can also create new spans by annotating methods with a `@WithSpan` annotation.
-
-[role="code_command hotspot file=1", subs="quotes"]
 ----
 #Replace the `InventoryManager` class.#
 `inventory/src/main/java/io/openliberty/guides/inventory/InventoryManager.java`
@@ -391,12 +366,36 @@ InventoryManager.java
 include::finish/inventory/src/main/java/io/openliberty/guides/inventory/InventoryManager.java[]
 ----
 
-Annotate the `add()` method with the [hotspot=addWithSpan file=1]`@WithSpan` annotation and the `hostname` parameter with the [hotspot=spanAttribute file=1]`@SpanAttribute` annotation to indicate that it is part of the trace.
+Annotate the `add()` method with the [hotspot=addWithSpan file=0]`@WithSpan` annotation and the `hostname` parameter with the [hotspot=spanAttribute file=0]`@SpanAttribute` annotation to indicate that it is part of the trace.
 
-To customize a span name, you can annotate the `list()` method by the [hotspot=listInventory file=1]`@WithSpan` annotation with a value.
+To customize a span name, you can annotate the `list()` method by the [hotspot=listInventory file=0]`@WithSpan` annotation with a value.
 
 
-Navigate your browser to the http://localhost:9081/inventory/systems/localhost URL.
+
+The MicroProfile Telemetry specification also makes the underlying OpenTelemetry Tracer instance available. The configured Tracer is accessed by injecting it into a bean. You can use it to instrument your code to create traces.
+
+[role="code_command hotspot file=1", subs="quotes"]
+----
+#Replace the `InventoryResource` class.#
+`inventory/src/main/java/io/openliberty/guides/inventory/InventoryResource.java`
+----
+
+InventoryResource.java
+[source, java, linenums, role='code_column hide_tags=copyright']
+----
+include::finish/inventory/src/main/java/io/openliberty/guides/inventory/InventoryResource.java[]
+----
+
+To access the Tracer, inject it into a bean by using the [hotspot=inject file=1]`@Inject` annotation from the Contexts and Dependency Injections API.
+
+Before the [hotspot=manager hotspot=getSystem file=1]`InventoryManager` to call the `system` service, create and start a span called [hotspot=getPropertiesSpan file=1]`GettingProperties` by using the `spanBuilder()` and `startSpan()` Tracer APIs.
+
+The [hotspot=try file=1]`try` block is called a `try-with-resources` statement that the `scope` object is closed at the end of the statement. It’s good practice to define custom spans inside such statements. Otherwise, any exceptions that are thrown before the span closes will leak the active span.
+
+Use the [hotspot=addEvent1 hotspot=addEvent2 file=1]`addEvent()` Span API to create an event when the properties are received and an event when fails to get the properties from the [hotspot=manager hotspot=getSystem file=1]`system` service. Use the [hotspot=end file=1]`end()` Span API to mark the `GettingProperties` span completed.
+
+
+Navigate your browser to the http://localhost:9081/inventory/systems/localhost and http://localhost:9081/inventory/systems URLs.
 
 You should see five spans in the exporter’s endpoint: four spans from inventory and one span from system, as shown in the following example:
 
