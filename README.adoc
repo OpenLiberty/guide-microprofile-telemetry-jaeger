@@ -397,7 +397,7 @@ Use the [hotspot=addEvent1 hotspot=addEvent2 file=1]`addEvent()` Span API to cre
 
 Navigate your browser to the http://localhost:9081/inventory/systems/localhost URL.
 
-To view the traces, go to the http://localhost:16686 URL. Select the `inventory` service in the **Service** dropdown list and click the **Find Traces** button at the end of the section. You'll see the result as the following:
+Check your Jaeger server at the http://localhost:16686 URL. Select the `inventory` service and click the **Find Traces** button at the end of the section. You'll see the result as the following:
 
 image::mptelemetry_result_items.png[Get inventory traces,align="center"]
 
@@ -409,7 +409,7 @@ image::mptelemetry_inventory_manual_span.png[Inventory detail spans,align="cente
 
 Navigate your browser to the http://localhost:9081/inventory/systems URL.
 
-Go to the http://localhost:16686 URL. Select the `inventory` service in the **Service** dropdown list and click the **Find Traces** button at the end of the section. You'll see the result as the following:
+Check your Jaeger server at the http://localhost:16686 URL. Select the `inventory` service and click the **Find Traces** button at the end of the section. You'll see the result as the following:
 
 image::mptelemetry_inventory_manager_span.png[Inventory list span,align="center"]
 
