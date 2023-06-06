@@ -318,7 +318,8 @@ Automatic instrumentation only instruments Jakarta RESTful web services and Micr
 
 === Enabling OpenTelemetry APIs
 
-The MicroProfile Telemetry feature has been enabled tracing of all REST endpoints by default in the previous section. To further control and customize traces, use the `@WithSpan` annotation to enable particular methods. You can also inject a custom `Tracer` object to create and customize spans.
+// The MicroProfile Telemetry feature has been enabled tracing of all REST endpoints by default in the previous section. To further control and customize traces, use the `@WithSpan` annotation to enable particular methods. You can also inject a custom `Tracer` object to create and customize spans.
+The MicroProfile Telemetry feature has been enabled tracing of all REST endpoints by default in the previous section. To further control and customize traces, you inject a custom `Tracer` object to create and customize spans.
 
 [role="code_command hotspot file=0", subs="quotes"]
 ----
@@ -352,29 +353,29 @@ The OpenTelemetry APIs are exposed as third-party APIs in Open Liberty. To add t
 
 === Injecting a custom Tracer object
 
-You can create new spans by annotating methods with a `@WithSpan` annotation.
+//You can create new spans by annotating methods with a `@WithSpan` annotation.
 
+//[role="code_command hotspot file=0", subs="quotes"]
+//----
+//#Replace the `InventoryManager` class.#
+//`inventory/src/main/java/io/openliberty/guides/inventory/InventoryManager.java`
+//----
+
+//InventoryManager.java
+//[source, java, linenums, role='code_column hide_tags=copyright']
+//----
+//include::finish/inventory/src/main/java/io/openliberty/guides/inventory/InventoryManager.java[]
+//----
+
+//Annotate the `add()` method with the [hotspot=addWithSpan file=0]`@WithSpan` annotation and the `hostname` parameter with the [hotspot=spanAttribute file=0]`@SpanAttribute` annotation to indicate that it is part of the trace.
+
+//To customize a span name, you can annotate the `list()` method by the [hotspot=listWithSpan file=0]`@WithSpan` annotation with a value.
+
+
+The MicroProfile Telemetry specification makes the underlying OpenTelemetry Tracer instance available. The configured Tracer is accessed by injecting it into a bean. You can use it to instrument your code to create traces.
+
+// TO DO - when resume the WithSpan portion, change the following file number from 0 to 1
 [role="code_command hotspot file=0", subs="quotes"]
-----
-#Replace the `InventoryManager` class.#
-`inventory/src/main/java/io/openliberty/guides/inventory/InventoryManager.java`
-----
-
-InventoryManager.java
-[source, java, linenums, role='code_column hide_tags=copyright']
-----
-include::finish/inventory/src/main/java/io/openliberty/guides/inventory/InventoryManager.java[]
-----
-
-Annotate the `add()` method with the [hotspot=addWithSpan file=0]`@WithSpan` annotation and the `hostname` parameter with the [hotspot=spanAttribute file=0]`@SpanAttribute` annotation to indicate that it is part of the trace.
-
-To customize a span name, you can annotate the `list()` method by the [hotspot=listWithSpan file=0]`@WithSpan` annotation with a value.
-
-
-
-The MicroProfile Telemetry specification also makes the underlying OpenTelemetry Tracer instance available. The configured Tracer is accessed by injecting it into a bean. You can use it to instrument your code to create traces.
-
-[role="code_command hotspot file=1", subs="quotes"]
 ----
 #Replace the `InventoryResource` class.#
 `inventory/src/main/java/io/openliberty/guides/inventory/InventoryResource.java`
@@ -386,13 +387,13 @@ InventoryResource.java
 include::finish/inventory/src/main/java/io/openliberty/guides/inventory/InventoryResource.java[]
 ----
 
-To access the Tracer, inject it into a bean by using the [hotspot=inject file=1]`@Inject` annotation from the Contexts and Dependency Injections API.
+To access the Tracer, inject it into a bean by using the [hotspot=inject file=0]`@Inject` annotation from the Contexts and Dependency Injections API.
 
-Before the [hotspot=manager hotspot=getSystem file=1]`InventoryManager` to call the `system` service, create and start a span called [hotspot=getPropertiesSpan file=1]`GettingProperties` by using the `spanBuilder()` and `startSpan()` Tracer APIs.
+Before the [hotspot=manager hotspot=getSystem file=0]`InventoryManager` to call the `system` service, create and start a span called [hotspot=getPropertiesSpan file=0]`GettingProperties` by using the `spanBuilder()` and `startSpan()` Tracer APIs.
 
-The [hotspot=try file=1]`try` block is called a `try-with-resources` statement that the `scope` object is closed at the end of the statement. It’s good practice to define custom spans inside such statements. Otherwise, any exceptions that are thrown before the span closes will leak the active span.
+The [hotspot=try file=0]`try` block is called a `try-with-resources` statement that the `scope` object is closed at the end of the statement. It’s good practice to define custom spans inside such statements. Otherwise, any exceptions that are thrown before the span closes will leak the active span.
 
-Use the [hotspot=addEvent1 hotspot=addEvent2 file=1]`addEvent()` Span API to create an event when the properties are received and an event when fails to get the properties from the [hotspot=manager hotspot=getSystem file=1]`system` service. Use the [hotspot=end file=1]`end()` Span API to mark the `GettingProperties` span completed.
+Use the [hotspot=addEvent1 hotspot=addEvent2 file=0]`addEvent()` Span API to create an event when the properties are received and an event when fails to get the properties from the [hotspot=manager hotspot=getSystem file=0]`system` service. Use the [hotspot=end file=0]`end()` Span API to mark the `GettingProperties` span completed.
 
 
 Navigate your browser to the http://localhost:9081/inventory/systems/localhost URL.
@@ -407,15 +408,15 @@ Verify that there are four spans from `inventory` service and one span from `sys
 image::mptelemetry_inventory_manual_span.png[Inventory detail spans,align="center"]
 
 
-Navigate your browser to the http://localhost:9081/inventory/systems URL.
+//Navigate your browser to the http://localhost:9081/inventory/systems URL.
 
-Check your Jaeger server at the http://localhost:16686 URL. Select the `inventory` service and click the **Find Traces** button at the end of the section. You'll see the result as the following:
+//Check your Jaeger server at the http://localhost:16686 URL. Select the `inventory` service and click the **Find Traces** button at the end of the section. You'll see the result as the following:
 
-image::mptelemetry_inventory_manager_span.png[Inventory list span,align="center"]
+//image::mptelemetry_inventory_manager_span.png[Inventory list span,align="center"]
 
 
-Verify that there a span from the `inventory` service. Click the trace to view its details.
-image::mptelemetry_inventory_manager_span.png[Inventory list span,align="center"]
+//Verify that there a span from the `inventory` service. Click the trace to view its details.
+//image::mptelemetry_inventory_manager_span.png[Inventory list span,align="center"]
 
 
 To learn more how to use OpenTelemetry APIs to instrument code, see the https://opentelemetry.io/docs/instrumentation/java/manual/[OpenTelemetry Manual Instrumentation] documentation.
