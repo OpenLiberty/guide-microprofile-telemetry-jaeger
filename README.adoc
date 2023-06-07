@@ -54,7 +54,7 @@ image::mptelemetry_diagram.png[Functionality Diagram,align="center"]
 
 == Additional prerequisites 
 
-Before you begin, deploy the Jaeger all-in-one executable file to start the Jaeger tracing system. The Jaeger all-in-one executable file is configured for quick local testing. You can find information about the Jaeger server and instructions for starting the all-in-one executable file in the https://www.jaegertracing.io/docs/latest/getting-started[Jaeger documentation].
+Before you begin, deploy the Jaeger all-in-one executable file to start the Jaeger tracing system. The Jaeger all-in-one executable file is configured for quick local testing. Jaeger 1.46 or later is recommended. You can find information about the Jaeger server and instructions for starting the all-in-one executable file in the https://www.jaegertracing.io/docs/latest/getting-started[Jaeger documentation].
 
 Before you proceed, make sure that your Jaeger server is up and running. Jaeger can be found at the http://localhost:16686 URL.
 
@@ -279,7 +279,7 @@ system/microprofile-config.properties
 include::finish/system/src/main/resources/META-INF/microprofile-config.properties[]
 ----
 
-Specify the [hotspot=service file=2]`otel.service.name` property with the `system` service name, set the [hotspot=disabled file=2]`otel.sdk.disabled` property with `false` to enable tracing, and specify the [hotspot=exporter file=2]`otel.traces.exporter` property with `jaeger` for using Jaeger tracing system.
+Specify the [hotspot=service file=2]`otel.service.name` property with the `system` service name and set the [hotspot=disabled file=2]`otel.sdk.disabled` property with `false` to enable tracing.
 
 
 [role="code_command hotspot file=3", subs="quotes"]
