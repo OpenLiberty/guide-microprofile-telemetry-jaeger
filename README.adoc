@@ -396,9 +396,7 @@ The [hotspot=try file=0]`try` block is called a `try-with-resources` statement t
 Use the [hotspot=addEvent1 hotspot=addEvent2 file=0]`addEvent()` Span API to create an event when the properties are received and an event when fails to get the properties from the [hotspot=manager hotspot=getSystem file=0]`system` service. Use the [hotspot=end file=0]`end()` Span API to mark the `GettingProperties` span completed.
 
 
-Navigate your browser to the http://localhost:9081/inventory/systems URL.
-
-Check your Jaeger server at the http://localhost:16686 URL. Select the `inventory` service and click the **Find Traces** button at the end of the section. You'll see the result as the following:
+Now, you can check out the traces. Visit the http://localhost:9081/inventory/systems URL and then your Jaeger server at the http://localhost:16686 URL. Select the `inventory` service and click the **Find Traces** button at the end of the section. You'll see the result as the following:
 
 image::inventory_manager_span.png[Inventory Manager span,align="center"]
 
@@ -407,9 +405,7 @@ Verify that there are two spans from the `inventory` service. Click the trace to
 image::inventory_manager_list_span.png[Inventory Manager list span,align="center"]
 {empty} +
 
-Navigate your browser to the http://localhost:9081/inventory/systems/localhost URL.
-
-Check your Jaeger server at the http://localhost:16686 URL. Select the `inventory` service and click the **Find Traces** button at the end of the section. You'll see the result as the following:
+Visit the http://localhost:9081/inventory/systems/localhost URL and then your Jaeger server at the http://localhost:16686 URL. Select the `inventory` service and click the **Find Traces** button at the end of the section. You'll see the result as the following:
 
 image::inventory_service_spans.png[Get traces for the inventory service,align="center"]
 
