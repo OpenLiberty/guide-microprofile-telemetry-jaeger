@@ -405,6 +405,7 @@ image::inventory_manager_span.png[Inventory Manager span,align="center"]
 Verify that there are two spans from the `inventory` service. Click the trace to view its details that contain a  `InventoryManager.list` span.
 
 image::inventory_manager_list_span.png[Inventory Manager list span,align="center"]
+{empty} +
 
 Navigate your browser to the http://localhost:9081/inventory/systems/localhost URL.
 
