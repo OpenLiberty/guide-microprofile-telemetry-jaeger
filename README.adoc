@@ -350,6 +350,26 @@ include::finish/inventory/src/main/liberty/config/server.xml[]
 The OpenTelemetry APIs are exposed as third-party APIs in Open Liberty. To add the visibility of OpenTelemetry APIs to the application, add `third-party` to the types of API packages that this class loader supports. Instead of explicitly configuring a list of API packages that includes `third-party`, set the `+third-party` value to the [hotspot=thirdParty file=1]`apiTypeVisibility` attribute in the [hotspot=thirdParty file=1]`classLoader` configuration. This configuration adds `third-party` to the default list of API package types that are supported.
 
 
+=== Enabling tracing in Jakarta CDI beans
+
+You can trace your Jakarta CDI beans by annotating their methods with a `@WithSpan` annotation.
+
+[role="code_command hotspot file=0", subs="quotes"]
+----
+#Replace the `InventoryManager` class.#
+`inventory/src/main/java/io/openliberty/guides/inventory/InventoryManager.java`
+----
+
+InventoryManager.java
+[source, java, linenums, role='code_column hide_tags=copyright']
+----
+include::finish/inventory/src/main/java/io/openliberty/guides/inventory/InventoryManager.java[]
+----
+
+Annotate the [hotspot=addWithSpan file=0]`add()` and [hotspot=listWithSpan file=0]`list()` methods with the `@WithSpan` annotation. You can annotate the [hotspot=spanAttribute file=0]`host` parameter with the `@SpanAttribute` annotation with a customized value to indicate that it is part of the trace.
+
+//To customize a span name, you can annotate the `list()` method by the [hotspot=listWithSpan file=0]`@WithSpan` annotation with a value.
+
 
 === Injecting a custom Tracer object
 
@@ -375,25 +395,6 @@ The [hotspot=try file=0]`try` block is called a `try-with-resources` statement t
 
 Use the [hotspot=addEvent1 hotspot=addEvent2 file=0]`addEvent()` Span API to create an event when the properties are received and an event when fails to get the properties from the [hotspot=manager hotspot=getSystem file=0]`system` service. Use the [hotspot=end file=0]`end()` Span API to mark the `GettingProperties` span completed.
 
-=== Enabling tracing in Jakarta CDI beans
-
-You can trace your Jakarta CDI beans by annotating their methods with a `@WithSpan` annotation.
-
-[role="code_command hotspot file=0", subs="quotes"]
-----
-#Replace the `InventoryManager` class.#
-`inventory/src/main/java/io/openliberty/guides/inventory/InventoryManager.java`
-----
-
-InventoryManager.java
-[source, java, linenums, role='code_column hide_tags=copyright']
-----
-include::finish/inventory/src/main/java/io/openliberty/guides/inventory/InventoryManager.java[]
-----
-
-Annotate the [hotspot=addWithSpan file=0]`add()` and [hotspot=listWithSpan file=0]`list()` methods with the `@WithSpan` annotation. You can annotate the `host` parameter with the [hotspot=spanAttribute file=0]`@SpanAttribute` annotation with a customized value to indicate that it is part of the trace.
-
-//To customize a span name, you can annotate the `list()` method by the [hotspot=listWithSpan file=0]`@WithSpan` annotation with a value.
 
 Navigate your browser to the http://localhost:9081/inventory/systems/localhost URL.
 
