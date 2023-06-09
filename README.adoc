@@ -374,7 +374,7 @@ Now, you can check out the traces. Visit the http://localhost:9081/inventory/sys
 image::inventory_manager_span.png[Inventory Manager span,align="center"]
 
 
-Verify that there are two spans from the `inventory` service. Click the trace to view its details that contain a `InventoryManager.list` span.
+Verify that there are two spans from the `inventory` service. Click the trace to view its details. You'll see the  `InventoryManager.list` span that is created by the `@WithSpan` annotation.
 
 image::inventory_manager_list_span.png[Inventory Manager list span,align="center"]
 
@@ -389,7 +389,7 @@ Verify that there are three spans from `inventory` service and one span from `sy
 image::inventory_details_4_spans.png[Inventory details spans,align="center"]
 
 
-Click the `InventoryManager.add` span and its `Tags`. You can see the `hostname` tag with the `localhost` value.
+Click the `InventoryManager.add` span and its `Tags`. You can see the `hostname` tag with the `localhost` value that is created by the `@SpanAttribute` annotation.
 
 image::inventory_manager_add_span.png[Inventory Manager add span,align="center"]
 {empty} +
