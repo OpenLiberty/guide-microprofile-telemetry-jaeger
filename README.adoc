@@ -136,6 +136,8 @@ The defaultServer server is ready to run a smarter planet.
 
 ifndef::cloud-hosted[]
 Make sure that your Jaeger server is running and point your browser to the http://localhost:9081/inventory/systems/localhost URL.
+
+When you visit this endpoint, you make two GET HTTP requests, one to the `system` service and one to the `inventory` service. Both of these requests are configured to be traced, so a new trace is recorded in Jaeger. To view the traces, go to the http://localhost:16686 URL.
 endif::[]
 
 ifdef::cloud-hosted[]
@@ -143,11 +145,8 @@ Open another command-line session and run the following curl command from the te
 ```bash
 curl -s http://localhost:9081/inventory/systems/localhost | jq
 ```
-endif::[]
 
-When you visit this endpoint, you make two GET HTTP requests, one to the `system` service and one to the `inventory` service. Both of these requests are configured to be traced, so a new trace is recorded in Jaeger. To view the traces, go to the http://localhost:16686 URL.
-ifdef::cloud-hosted[]
-Click the following button to visit the Jaeger service:
+When you visit this endpoint, you make two GET HTTP requests, one to the ***system*** service and one to the ***inventory*** service. Both of these requests are configured to be traced, so a new trace is recorded in Jaeger. To view the traces, click the following button to visit the Jaeger service:
 ::startApplication{port="16686" display="external" name="Visit Jaeger service" route="/"}
 endif::[]
 
@@ -332,16 +331,17 @@ For more information about these and other Telemetry properties, see the https:/
 
 To run the `system` and `inventory` services, simply navigate your browser to the http://localhost:9081/inventory/systems/localhost URL.
 
+ifndef::cloud-hosted[]
+To view the traces, go to the http://localhost:16686 URL.
+endif::[]
+
 ifdef::cloud-hosted[]
 Run the following curl command:
 ```bash
 curl -s http://localhost:9081/inventory/systems/localhost | jq
 ```
-endif::[]
 
-To view the traces, go to the http://localhost:16686 URL.
-ifdef::cloud-hosted[]
-Click the following button to visit the Jaeger service:
+To view the traces, click the following button to visit the Jaeger service:
 ::startApplication{port="16686" display="external" name="Visit Jaeger service" route="/"}
 endif::[]
 
