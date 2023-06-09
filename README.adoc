@@ -257,7 +257,7 @@ Enable [hotspot=mpTelemetry file=0]`mpTelemetry` feature in the `server.xml` of 
 ----
 
 inventory/server.xml
-[source, xml, linenums, role='code_column hide_tags=thirdParty']
+[source, xml, linenums, role='code_column hide_tags=thirdPartyComment,thirdParty']
 ----
 include::finish/inventory/src/main/liberty/config/server.xml[]
 ----
@@ -318,8 +318,7 @@ Automatic instrumentation only instruments Jakarta RESTful web services and Micr
 
 === Enabling OpenTelemetry APIs
 
-// The MicroProfile Telemetry feature has been enabled tracing of all REST endpoints by default in the previous section. To further control and customize traces, use the `@WithSpan` annotation to enable particular methods. You can also inject a custom `Tracer` object to create and customize spans.
-The MicroProfile Telemetry feature has been enabled tracing of all REST endpoints by default in the previous section. To further control and customize traces, you inject a custom `Tracer` object to create and customize spans.
+The MicroProfile Telemetry feature has been enabled tracing of all REST endpoints by default in the previous section. To further control and customize traces, use the `@WithSpan` annotation to enable particular methods. You can also inject a `Tracer` object to create and customize spans.
 
 [role="code_command hotspot file=0", subs="quotes"]
 ----
