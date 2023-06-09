@@ -329,14 +329,12 @@ Similarly, specify the [hotspot=otel file=3]`otel` properties for the `inventory
 
 For more information about these and other Telemetry properties, see the https://openliberty.io/docs/latest/microprofile-config-properties.html#telemetry[MicroProfile Config properties for MicroProfile Telemetry^] documentation.
 
-To run the `system` and `inventory` services, simply navigate your browser to the http://localhost:9081/inventory/systems/localhost URL.
-
 ifndef::cloud-hosted[]
-To view the traces, go to the http://localhost:16686 URL.
+To run the `system` and `inventory` services, simply navigate your browser to the http://localhost:9081/inventory/systems/localhost URL. To view the traces, go to the http://localhost:16686 URL.
 endif::[]
 
 ifdef::cloud-hosted[]
-Run the following curl command:
+To run the ***system*** and ***inventory*** services, run the following curl command:
 ```bash
 curl -s http://localhost:9081/inventory/systems/localhost | jq
 ```
