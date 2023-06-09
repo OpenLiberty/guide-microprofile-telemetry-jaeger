@@ -432,7 +432,7 @@ image::inventory_service_unknown_spans.png[Get traces for unknown hostname,align
 There are two spans from `inventory` service. Click the trace to view its details. You'll see the `GettingProperties` span. Click the `GettingProperties` span and its `Logs`. You can see the `Cannot get properties` message.
 
 image::logs_at_gettingProperties.png[Logs at GettingProperties span,align="center"]
-
+{empty} +
 
 To learn more how to use OpenTelemetry APIs to instrument code, see the https://opentelemetry.io/docs/instrumentation/java/manual/[OpenTelemetry Manual Instrumentation] documentation.
 
