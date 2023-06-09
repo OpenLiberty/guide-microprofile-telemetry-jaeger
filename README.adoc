@@ -145,9 +145,7 @@ curl -s http://localhost:9081/inventory/systems/localhost | jq
 ```
 endif::[]
 
-When you visit this endpoint, you make two GET HTTP requests, one to the `system` service and one to the `inventory` service. Both of these requests are configured to be traced, so a new trace is recorded in Jaeger.
-
-To view the traces, go to the http://localhost:16686 URL.
+When you visit this endpoint, you make two GET HTTP requests, one to the `system` service and one to the `inventory` service. Both of these requests are configured to be traced, so a new trace is recorded in Jaeger. To view the traces, go to the http://localhost:16686 URL.
 ifdef::cloud-hosted[]
 ::startApplication{port="16686" display="external" name="Visit Jaeger service" route="/"}
 endif::[]
