@@ -412,7 +412,19 @@ Annotate the [hotspot=addMethod file=0]`add()` and [hotspot=listMethod file=0]`l
 
 //To customize a span name, you can annotate the `list()` method by the [hotspot=listWithSpan file=0]`@WithSpan` annotation with a value.
 
-Now, you can check out the traces. Visit the http://localhost:9081/inventory/systems URL and then your Jaeger server at the http://localhost:16686 URL. Select the `inventory` service and click the **Find Traces** button at the end of the section. You'll see the result as:
+ifndef::cloud-hosted[]
+Now, you can check out the traces. Visit the http://localhost:9081/inventory/systems URL and then your Jaeger server at the http://localhost:16686 URL.
+ifdef::cloud-hosted[]
+Now, you can check out the traces. Run the following curl command:
+```bash
+curl -s http://localhost:9081/inventory/systems | jq
+```
+
+and click the following button to visit the Jaeger service:
+::startApplication{port="16686" display="external" name="Visit Jaeger service" route="/"}
+endif::[]
+
+Select the `inventory` service and click the **Find Traces** button at the end of the section. You'll see the result as:
 
 image::inventory_manager_span.png[Inventory Manager span,align="center"]
 
@@ -422,7 +434,22 @@ Verify that there are two spans from the `inventory` service. Click the trace to
 image::inventory_manager_list_span.png[Inventory Manager list span,align="center"]
 
 
-Visit the http://localhost:9081/inventory/systems/localhost URL and then your Jaeger server at the http://localhost:16686 URL. Select the `inventory` service and click the **Find Traces** button at the end of the section. You'll see the result as:
+ifndef::cloud-hosted[]
+Visit the http://localhost:9081/inventory/systems/localhost URL and then your Jaeger server at the http://localhost:16686 URL.
+endif::[]
+
+ifdef::cloud-hosted[]
+Run the following curl command:
+```bash
+curl -s http://localhost:9081/inventory/systems/localhost | jq
+```
+
+Click the following button to visit the Jaeger service:
+::startApplication{port="16686" display="external" name="Visit Jaeger service" route="/"}
+endif::[]
+
+
+Select the `inventory` service and click the **Find Traces** button at the end of the section. You'll see the result as:
 
 image::inventory_service_4_spans.png[Get traces for the inventory service,align="center"]
 
