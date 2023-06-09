@@ -414,6 +414,8 @@ Annotate the [hotspot=addMethod file=0]`add()` and [hotspot=listMethod file=0]`l
 
 ifndef::cloud-hosted[]
 Now, you can check out the traces. Visit the http://localhost:9081/inventory/systems URL and then your Jaeger server at the http://localhost:16686 URL.
+endif::[]
+
 ifdef::cloud-hosted[]
 Now, you can check out the traces. Run the following curl command:
 ```bash
