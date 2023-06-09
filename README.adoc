@@ -513,7 +513,7 @@ image::logs_at_gettingProperties.png[Logs at GettingProperties span,align="cente
 {empty} +
 
 
-To learn more how to use OpenTelemetry APIs to instrument code, see the https://opentelemetry.io/docs/instrumentation/java/manual/[OpenTelemetry Manual Instrumentation] documentation.
+To learn more how to use OpenTelemetry APIs to instrument code, see the https://opentelemetry.io/docs/instrumentation/java/manual/[OpenTelemetry Manual Instrumentation^] documentation.
 
 
 // =================================================================================================
