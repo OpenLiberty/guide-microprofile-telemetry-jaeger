@@ -373,22 +373,26 @@ Now, you can check out the traces. Visit the http://localhost:9081/inventory/sys
 
 image::inventory_manager_span.png[Inventory Manager span,align="center"]
 
+
 Verify that there are two spans from the `inventory` service. Click the trace to view its details that contain a `InventoryManager.list` span.
 
 image::inventory_manager_list_span.png[Inventory Manager list span,align="center"]
-{empty} +
+
 
 Visit the http://localhost:9081/inventory/systems/localhost URL and then your Jaeger server at the http://localhost:16686 URL. Select the `inventory` service and click the **Find Traces** button at the end of the section. You'll see the result as the following:
 
 image::inventory_service_4_spans.png[Get traces for the inventory service,align="center"]
 
+
 Verify that there are three spans from `inventory` service and one span from `system` service. Click the trace to view its details.
 
 image::inventory_details_4_spans.png[Inventory details spans,align="center"]
 
+
 Click the `InventoryManager.add` span and its `Tags`. You can see the `hostname` tag with the `localhost` value.
 
 image::inventory_manager_add_span.png[Inventory Manager add span,align="center"]
+{empty} +
 
 
 === Injecting a custom Tracer object
@@ -416,25 +420,29 @@ The [hotspot=try file=0]`try` block is called a `try-with-resources` statement t
 Use the [hotspot=addEvent1 hotspot=addEvent2 file=0]`addEvent()` Span API to create an event when the properties are received and an event when fails to get the properties from the [hotspot=manager hotspot=getSystem file=0]`system` service. Use the [hotspot=end file=0]`end()` Span API to mark the `GettingProperties` span completed.
 
 
-
 Visit the http://localhost:9081/inventory/systems/localhost URL and then your Jaeger server at the http://localhost:16686 URL. Select the `inventory` service and click the **Find Traces** button at the end of the section. You'll see the result as the following:
 
 image::inventory_service_spans.png[Get traces for the inventory service,align="center"]
+
 
 Verify that there are four spans from `inventory` service and one span from `system` service. Click the trace to view its details. You'll see the `GettingProperties` span.
 
 image::inventory_details_spans.png[Inventory details spans,align="center"]
 
+
 Visit the http://localhost:9081/inventory/systems/unknown URL and then your Jaeger server at the http://localhost:16686 URL. Select the `inventory` service and click the **Find Traces** button at the end of the section. You'll see the result as the following:
 
 image::inventory_service_unknown_spans.png[Get traces for unknown hostname,align="center"]
+
 
 There are two spans from `inventory` service. Click the trace to view its details. You'll see the `GettingProperties` span. Click the `GettingProperties` span and its `Logs`. You can see the `Cannot get properties` message.
 
 image::logs_at_gettingProperties.png[Logs at GettingProperties span,align="center"]
 {empty} +
 
+
 To learn more how to use OpenTelemetry APIs to instrument code, see the https://opentelemetry.io/docs/instrumentation/java/manual/[OpenTelemetry Manual Instrumentation] documentation.
+
 
 // =================================================================================================
 // Testing the application 
