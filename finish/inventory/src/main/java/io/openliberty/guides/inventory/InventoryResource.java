@@ -51,7 +51,9 @@ public class InventoryResource {
         // end::getPropertiesSpan[]
         // tag::try[]
         Properties props = null;
+        // tag::scope[]
         try (Scope scope = getPropertiesSpan.makeCurrent()) {
+        // end::scope[]
             // tag::getSystem[]
             props = manager.get(hostname);
             // end::getSystem[]
