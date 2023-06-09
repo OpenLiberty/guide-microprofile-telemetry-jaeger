@@ -43,7 +43,7 @@ Traces represent requests and consist of multiple spans. Spans are representativ
 
 Context is an immutable object that is contained in the span data to identify the unique request that each span is a part of. This data is required for moving trace information across service boundaries, allowing developers to follow a single request through a potentially complex distributed system. Exporters are components that send data to a backend service so you can visualize and monitor the generated spans.
 
-You'll configure the provided `inventory` and `system` services to use https://www.jaegertracing.io/[Jaeger] for distributed tracing with MicroProfile Telemetry. You'll run these services in two separate JVMs made of two server instances to demonstrate tracing in a distributed environment. If all the components were run on a single server, then any logging software would be sufficient.
+You'll configure the provided `inventory` and `system` services to use https://www.jaegertracing.io/[Jaeger^] for distributed tracing with MicroProfile Telemetry. You'll run these services in two separate JVMs made of two server instances to demonstrate tracing in a distributed environment. If all the components were run on a single server, then any logging software would be sufficient.
 
 image::architecture_diagram.png[Application architecture,align="center"]
 
@@ -69,16 +69,19 @@ include::{common-includes}/gitclone.adoc[]
 // cloud-hosted guide instructions:
 ifdef::cloud-hosted[]
 Run the following docker command to start Jaeger server:
-```bash
+```bash 
 docker run -d --name jaeger \
-  -e COLLECTOR_ZIPKIN_HTTP_PORT=9411 \
-  -p 5775:5775/udp \
+  -e COLLECTOR_ZIPKIN_HOST_PORT=:9411 \
+  -e COLLECTOR_OTLP_ENABLED=true \
   -p 6831:6831/udp \
   -p 6832:6832/udp \
   -p 5778:5778 \
   -p 16686:16686 \
-  -p 14268:14268 \
+  -p 4317:4317 \
+  -p 4318:4318 \
   -p 14250:14250 \
+  -p 14268:14268 \
+  -p 14269:14269 \
   -p 9411:9411 \
   jaegertracing/all-in-one:1.46
 ```
@@ -131,11 +134,25 @@ After you see the following message in both command-line sessions, both of your 
 The defaultServer server is ready to run a smarter planet.
 ----
 
-Make sure that your Jaeger server is running and point your browser to the http://localhost:9081/inventory/systems/localhost URL. 
+ifndef::cloud-hosted[]
+Make sure that your Jaeger server is running and point your browser to the http://localhost:9081/inventory/systems/localhost URL.
+endif::[]
 
-When you visit this endpoint, you make two GET HTTP requests, one to the system service and one to the inventory service. Both of these requests are configured to be traced, so a new trace is recorded in Jaeger.
+ifdef::cloud-hosted[]
+Open another command-line session and run the following curl command from the terminal:
+```bash
+curl -s http://localhost:9081/inventory/systems/localhost | jq
+```
+endif::[]
 
-To view the traces, go to the http://localhost:16686 URL. You can view the traces for the `inventory` or `system` services under the **Search** tab. If you see only the **jaeger-query** option that is listed in the dropdown, wait a little longer and refresh the page to see the application services.
+When you visit this endpoint, you make two GET HTTP requests, one to the `system` service and one to the `inventory` service. Both of these requests are configured to be traced, so a new trace is recorded in Jaeger.
+
+To view the traces, go to the http://localhost:16686 URL.
+ifdef::cloud-hosted[]
+::startApplication{port="16686" display="external" name="Visit Jaeger service" route="/"}
+endif::[]
+
+You can view the traces for the `inventory` or `system` services under the **Search** tab. If you see only the **jaeger-query** option that is listed in the dropdown, wait a little longer and refresh the page to see the application services.
 
 Select the services in the **Select A Service** menu and click the **Find Traces** button at the end of the section. You'll see the result as:
 
