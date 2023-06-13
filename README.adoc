@@ -17,7 +17,7 @@
 :page-tags: ['MicroProfile']
 :page-permalink: /guides/{projectid}
 :common-includes: https://raw.githubusercontent.com/OpenLiberty/guides-common/prod
-:page-related-guides: [ 'cdi-intro' ]
+:page-related-guides: [ 'cdi-intro', `microprofile-metrics`, `microprofile-health` ]
 :imagesdir: /img/guide/{projectid}
 :page-seo-title: Enabling distributed tracing in Java microservices using MicroProfile Telemetry and the Jaeger distributed tracing system.
 :page-seo-description: A getting started tutorial and an example on how to enable distributed tracing in Java microservices to easily trace request flows that span multiple resources by using MicroProfile Telemetry and Jaeger distributed tracing system.​
@@ -527,7 +527,7 @@ To check out the event adding to the `GettingProperties` span, visit the http://
 endif::[]
 
 ifdef::cloud-hosted[]
-To check out the event adding to the `GettingProperties` span, run the following curl command:
+To check out the event adding to the ***GettingProperties*** span, run the following curl command:
 ```bash
 curl -s http://localhost:9081/inventory/systems/unknown | jq
 ```
