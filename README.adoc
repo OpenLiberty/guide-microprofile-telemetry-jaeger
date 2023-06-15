@@ -39,9 +39,7 @@ The use of microservices architecture can increase difficulty to see how service
 
 One way to increase observability of an application is by emitting traces. https://opentelemetry.io/[OpenTelemetry^] is a set of APIs, SDKs, tooling, and integrations that are designed for the creation and management of telemetry data such as traces, metrics, and logs. MicroProfile Telemetry adopts OpenTelemetry so your applications can benefit from both manual and automatic traces.
 
-Traces represent requests, which can contain multiple operations, or spans. Each span comprises a name, time-related data, log messages, and metadata that describe what occurred during a transaction. Spans are associated with a context, which identifies the request within which the span occurred. Developers can then follow a single request between services through a potentially complex distributed system.
-
-Context is an immutable object that is contained in the span data to identify the unique request that each span is a part of. This data is required for moving trace information across service boundaries, allowing developers to follow a single request through a potentially complex distributed system. Exporters will send the data that MicroProfile Telemetry 1.0 collects to Jaeger so you can visualize and monitor the generated spans.
+Traces represent requests, which can contain multiple operations, or spans. Each span comprises a name, time-related data, log messages, and metadata that describe what occurred during a transaction. Spans are associated with a context, which identifies the request within which the span occurred. Developers can then follow a single request between services through a potentially complex distributed system. Exporters send the data that MicroProfile Telemetry 1.0 collects to Jaeger so you can visualize and monitor the generated spans.
 
 You'll configure the provided `system` and `inventory` services to use https://www.jaegertracing.io/[Jaeger^] for distributed tracing with MicroProfile Telemetry. You'll run these services in two separate JVMs made of two server instances to demonstrate tracing in a distributed environment. If all the components were run on a single server, then any logging software would be sufficient.
 
@@ -295,7 +293,7 @@ inventory/server.xml
 include::finish/inventory/src/main/liberty/config/server.xml[]
 ----
 
-The [hotspot=mpTelemetry file=1]`mpTelemetry` feature is now enabled the `server.xml` of the `inventory` service.
+The [hotspot=mpTelemetry file=1]`mpTelemetry` feature is now enabled in the `server.xml` of the `inventory` service.
 
 
 By default, MicroProfile Telemetry tracing is off. To enable any tracing aspects, specify the `otel` properties in the MicroProfile configuration file. 
@@ -312,7 +310,7 @@ system/microprofile-config.properties
 include::finish/system/src/main/resources/META-INF/microprofile-config.properties[]
 ----
 
-The MicroProfile properties file specifies the [hotspot=service file=2]`otel.service.name` property with the `system` service name and sets the [hotspot=disabled file=2]`otel.sdk.disabled` property with `false` to enable tracing.
+The MicroProfile properties file sets the [hotspot=service file=2]`otel.service.name` property with the `system` service name and sets the [hotspot=disabled file=2]`otel.sdk.disabled` property to `false` to enable tracing.
 
 
 [role="code_command hotspot file=3", subs="quotes"]
