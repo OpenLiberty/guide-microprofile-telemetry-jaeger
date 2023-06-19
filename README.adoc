@@ -415,13 +415,13 @@ To access the Tracer, inject it into a bean by using the [hotspot=inject file=0]
 
 Before the [hotspot=manager hotspot=getSystem file=0]`InventoryManager` to call the `system` service, create and start a span called [hotspot=getPropertiesSpan file=0]`GettingProperties` by using the `spanBuilder()` and `startSpan()` Tracer APIs.
 
-When we start a span, we also need to end it by calling end() on the span. If we don't end a span, it won't be recorded at all and won't show up in Jaeger. In this code we ensure that end() is always called by including it in a finally block.
+When starting a span, you will need to end it by calling end() on the span. If you don't end a span, it won't be recorded at all and won't show up in Jaeger. This code ensures that end() is always called by including it in a finally block.
 
 The [hotspot=try file=0]`try` block is called a `try-with-resources` statement that the [hotspot=scope file=0]`scope` object is closed at the end of the statement. It’s good practice to define custom spans inside such statements. Otherwise, any exceptions that are thrown before the span closes will leak the active span.
 
-After starting the span, we make it current with the makeCurrent() call. Making a span current means that any new spans created in the same thread (either automatically by open liberty, or manually by calling the API) will use this span as their parent span.
+After starting the span, you make it current with the makeCurrent() call. Making a span current means that any new spans created in the same thread (either automatically by open liberty, or manually by calling the API) will use this span as their parent span.
 
-When we call makeCurrent() , it returns a Scope object. We need to call Scope.close() when we want the span to stop being the current span. The easiest way to do this is to call makeCurrent() in a try-with-resources block, which ensure the Scope is automatically closed at the end of the block.
+When calling makeCurrent() , it returns a Scope object. You need to call Scope.close() when you want the span to stop being the current span. The easiest way to do this is to call makeCurrent() in a try-with-resources block, which ensure the Scope is automatically closed at the end of the block.
 
 Use the [hotspot=addEvent1 hotspot=addEvent2 file=0]`addEvent()` Span API to create an event when the properties are received and an event when fails to get the properties from the [hotspot=manager hotspot=getSystem file=0]`system` service. Use the [hotspot=end file=0]`end()` Span API to mark the `GettingProperties` span completed.
 
