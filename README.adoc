@@ -83,7 +83,7 @@ docker run -d --name jaeger \
   jaegertracing/all-in-one:1.46
 ```
 
-You can find information about the Jaeger server and instructions for starting the all-in-one executable file in the [Jaeger documentation](https://www.jaegertracing.io/docs/1.22/getting-started/#all-in-one).
+You can find information about the Jaeger server and instructions for starting the all-in-one executable file in the [Jaeger documentation](https://www.jaegertracing.io/docs/1.46/getting-started/#all-in-one).
 
 Before you proceed, make sure that your Jaeger server is up and running. Click the following button to visit the Jaeger service:
 ::startApplication{port="16686" display="external" name="Visit Jaeger service" route="/"}
