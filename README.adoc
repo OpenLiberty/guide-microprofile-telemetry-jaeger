@@ -43,7 +43,7 @@ Traces represent requests and consist of multiple spans. Spans are representativ
 
 Context is an immutable object that is contained in the span data to identify the unique request that each span is a part of. This data is required for moving trace information across service boundaries, allowing developers to follow a single request through a potentially complex distributed system. Exporters are components that send data to a backend service so you can visualize and monitor the generated spans.
 
-You'll configure the provided `inventory` and `system` services to use https://www.jaegertracing.io/[Jaeger] for distributed tracing with MicroProfile Telemetry. You'll run these services in two separate JVMs made of two server instances to demonstrate tracing in a distributed environment. If all the components were run on a single server, then any logging software would be sufficient.
+You'll configure the provided `inventory` and `system` services to use https://www.jaegertracing.io/[Jaeger] for distributed tracing with MicroProfile Telemetry. You'll run these services in two separate JVMs made of two server instances to demonstrate tracing in a distributed environment. If all the components were run on a single server, then any logging software would be sufficient. You'll be able to create a span for an operation which isn't a REST request or a CDI method call, or to add additional tags (e.g. a session ID) to existing spans so you can query for them in Jaeger later. 
 
 image::architecture_diagram.png[Application architecture,align="center"]
 
@@ -415,7 +415,13 @@ To access the Tracer, inject it into a bean by using the [hotspot=inject file=0]
 
 Before the [hotspot=manager hotspot=getSystem file=0]`InventoryManager` to call the `system` service, create and start a span called [hotspot=getPropertiesSpan file=0]`GettingProperties` by using the `spanBuilder()` and `startSpan()` Tracer APIs.
 
+When we start a span, we also need to end it by calling end() on the span. If we don't end a span, it won't be recorded at all and won't show up in Jaeger. In this code we ensure that end() is always called by including it in a finally block.
+
 The [hotspot=try file=0]`try` block is called a `try-with-resources` statement that the [hotspot=scope file=0]`scope` object is closed at the end of the statement. It’s good practice to define custom spans inside such statements. Otherwise, any exceptions that are thrown before the span closes will leak the active span.
+
+After starting the span, we make it current with the makeCurrent() call. Making a span current means that any new spans created in the same thread (either automatically by open liberty, or manually by calling the API) will use this span as their parent span.
+
+When we call makeCurrent() , it returns a Scope object. We need to call Scope.close() when we want the span to stop being the current span. The easiest way to do this is to call makeCurrent() in a try-with-resources block, which ensure the Scope is automatically closed at the end of the block.
 
 Use the [hotspot=addEvent1 hotspot=addEvent2 file=0]`addEvent()` Span API to create an event when the properties are received and an event when fails to get the properties from the [hotspot=manager hotspot=getSystem file=0]`system` service. Use the [hotspot=end file=0]`end()` Span API to mark the `GettingProperties` span completed.
 
