@@ -421,7 +421,7 @@ The [hotspot=try file=0]`try` block is called a `try-with-resources` statement t
 
 After starting the span, you make it current with the makeCurrent() call. Making a span current means that any new spans created in the same thread (either automatically by open liberty, or manually by calling the API) will use this span as their parent span.
 
-When calling makeCurrent() , it returns a Scope object. You need to call Scope.close() when you want the span to stop being the current span. The easiest way to do this is to call makeCurrent() in a try-with-resources block, which ensure the Scope is automatically closed at the end of the block.
+When calling makeCurrent() , it returns a Scope object. You must always call Scope.close() in order for the span to stop being the current span. The easiest way to do this is to call makeCurrent() in a try-with-resources block, which ensures the Scope is automatically closed at the end of the block.
 
 Use the [hotspot=addEvent1 hotspot=addEvent2 file=0]`addEvent()` Span API to create an event when the properties are received and an event when fails to get the properties from the [hotspot=manager hotspot=getSystem file=0]`system` service. Use the [hotspot=end file=0]`end()` Span API to mark the `GettingProperties` span completed.
 
