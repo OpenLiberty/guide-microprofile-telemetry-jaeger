@@ -71,14 +71,17 @@ ifdef::cloud-hosted[]
 Run the following docker command to start Jaeger server:
 ```bash
 docker run -d --name jaeger \
-  -e COLLECTOR_ZIPKIN_HTTP_PORT=9411 \
-  -p 5775:5775/udp \
+  -e COLLECTOR_ZIPKIN_HOST_PORT=:9411 \
+  -e COLLECTOR_OTLP_ENABLED=true \
   -p 6831:6831/udp \
   -p 6832:6832/udp \
   -p 5778:5778 \
   -p 16686:16686 \
-  -p 14268:14268 \
+  -p 4317:4317 \
+  -p 4318:4318 \
   -p 14250:14250 \
+  -p 14268:14268 \
+  -p 14269:14269 \
   -p 9411:9411 \
   jaegertracing/all-in-one:1.46
 ```
@@ -413,9 +416,9 @@ include::finish/inventory/src/main/java/io/openliberty/guides/inventory/Inventor
 
 To access the Tracer, inject it into a bean by using the [hotspot=inject file=0]`@Inject` annotation from the Contexts and Dependency Injections API.
 
-Before the [hotspot=manager hotspot=getSystem file=0]`InventoryManager` to call the `system` service, create and start a span called [hotspot=getPropertiesSpan file=0]`GettingProperties` by using the `spanBuilder()` and `startSpan()` Tracer APIs.
+Before the [hotspot=manager hotspot=getSystem file=0]`InventoryManager` calls the `system` service, it creates and starts a span called [hotspot=getPropertiesSpan file=0]`GettingProperties` by using the `spanBuilder()` and `startSpan()` Tracer APIs.
 
-When starting a span, you will need to end it by calling end() on the span. If you don't end a span, it won't be recorded at all and won't show up in Jaeger. This code ensures that end() is always called by including it in a finally block.
+When starting a span, you will need to end it by calling `end()` on the span. If you don't end a span, it won't be recorded at all and won't show up in Jaeger. This code ensures that `end()` is always called by including it in a finally block.
 
 The [hotspot=try file=0]`try` block is called a `try-with-resources` statement that the [hotspot=scope file=0]`scope` object is closed at the end of the statement. It’s good practice to define custom spans inside such statements. Otherwise, any exceptions that are thrown before the span closes will leak the active span.
 
