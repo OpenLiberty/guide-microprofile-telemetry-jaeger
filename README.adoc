@@ -422,7 +422,8 @@ When starting a span, you will need to end it by calling `end()` on the span. If
 
 After starting the span, you make it current with the `makeCurrent()` call. Making a span current means that any new spans created in the same thread (either automatically by open liberty, or manually by calling the API) will use this span as their parent span.
 
-The `makeCurrent()` call returns a `Scope`. It's very important to always close the `Scope`, which stops the span being current and makes the previous span current again. The recommended way to do this is to use a [hotspot=try file=0] `try-with-resources` block, which makes sure that the `Scope` is automatically closed at the end of the block.
+The `makeCurrent()` call returns a `Scope`. It's very important to always close the `Scope`, which stops the span being current and makes the previous span current again. 
+The recommended way to do this is to use a [hotspot=try file=0] `try-with-resources` block, which makes sure that the `Scope` is automatically closed at the end of the block.
 
 Use the [hotspot=addEvent1 hotspot=addEvent2 file=0]`addEvent()` Span API to create an event when the properties are received and an event when fails to get the properties from the [hotspot=manager hotspot=getSystem file=0]`system` service. Use the [hotspot=end file=0]`end()` Span API to mark the `GettingProperties` span completed.
 
