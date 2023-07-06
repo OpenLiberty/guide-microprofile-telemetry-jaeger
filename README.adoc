@@ -376,7 +376,7 @@ pom.xml
 include::finish/inventory/pom.xml[]
 ----
 
-The OpenTelemetry API and OpenTelemetry Instrumentation Annotations must be provided as dependencies to your build path. Add two [hotspot=opentelemetry file=0]`io.opentelemetry` dependencies in your `pom.xml` Maven project file.
+The OpenTelemetry API and OpenTelemetry Instrumentation Annotations must be provided as dependencies to your build path. The `pom.xml` now includes two [hotspot=opentelemetry file=0]`io.opentelemetry` dependencies.
 
 [role="code_command hotspot file=1", subs="quotes"]
 ----
