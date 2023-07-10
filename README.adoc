@@ -35,7 +35,7 @@ Distributed tracing helps teams to keep track of requests between microservices.
 // =================================================================================================
 
 == What you'll learn
-The use of microservices architecture can increase difficulty to see how services depend on or affect other services. Consequently, making it harder to find the source of latency or inaccuracy.
+The use of a microservices architecture can increase the difficulty of understanding how services depend on or affect other services. Consequently, this makes it harder to identify the source of latency or inaccuracies.
 
 One way to increase observability of an application is by emitting traces. https://opentelemetry.io/[OpenTelemetry^] is a set of APIs, SDKs, tooling, and integrations that are designed for the creation and management of telemetry data such as traces, metrics, and logs. MicroProfile Telemetry adopts OpenTelemetry so your applications can benefit from both manual and automatic traces.
 
@@ -409,7 +409,7 @@ InventoryManager.java
 include::finish/inventory/src/main/java/io/openliberty/guides/inventory/InventoryManager.java[]
 ----
 
-Annotate the [hotspot=addMethod file=0]`add()` and [hotspot=listMethod file=0]`list()` methods with the [hotspot=addWithSpan hotspot=listWithSpan file=0]`@WithSpan` annotation. You can annotate the [hotspot=spanAttribute file=0]`host` parameter with the [hotspot=spanAttribute file=0]`@SpanAttribute` annotation with a customized value to indicate that it is part of the trace.
+Annotate the [hotspot=addMethod file=0]`add()` and [hotspot=listMethod file=0]`list()` methods with the [hotspot=addWithSpan hotspot=listWithSpan file=0]`@WithSpan` annotation. Then, the OpenTelemetry instrumentation will provide a new span for each method. This will allow you to collect and trace the spans across different services. Additionally, you can annotate the [hotspot=spanAttribute file=0]`host` parameter with the [hotspot=spanAttribute file=0]`@SpanAttribute` annotation with a customized value to indicate that it is part of the trace.
 
 //To customize a span name, you can annotate the `list()` method by the [hotspot=listWithSpan file=0]`@WithSpan` annotation with a value.
 
