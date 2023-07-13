@@ -45,7 +45,7 @@ You'll configure the provided `system` and `inventory` services to use https://w
 
 image::architecture_diagram.png[Application architecture,align="center"]
 
-The diagram above depicts the architecture of the guide. Please note that the blue solid lines indicate the services included in the guide, while the black dotted line represents services that can be added to the system.
+The diagram above depicts the architecture of the guide. Please note that the blue solid lines indicate the services included in the guide, while the dotted line represents services that can be added to the system.
 
 
 // =================================================================================================
