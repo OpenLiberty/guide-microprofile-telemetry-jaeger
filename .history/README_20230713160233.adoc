@@ -43,7 +43,7 @@ Traces represent requests, which can contain multiple operations, or spans. Each
 
 You'll configure the provided `system` and `inventory` services to use https://www.jaegertracing.io/[Jaeger^] for distributed tracing with MicroProfile Telemetry. You'll run these services in two separate JVMs made of two server instances to demonstrate tracing in a distributed environment. If all the components were run on a single server, then any logging software would be sufficient.
 
-image::architecture_diagram.png[Application architecture^The blue solid lines indicate the services included in the guide, while the black dotted line represents services that can be added to the system.,align="center"]
+image::architecture_diagram.png[Application architecture^The blue solid lines indicate the services included in the guide, while the dotted line represents services that can be added to the system.,align="center"]
 
 
 // =================================================================================================
