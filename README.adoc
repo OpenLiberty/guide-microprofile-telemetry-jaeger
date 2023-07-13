@@ -409,7 +409,7 @@ InventoryManager.java
 include::finish/inventory/src/main/java/io/openliberty/guides/inventory/InventoryManager.java[]
 ----
 
-Annotate the [hotspot=addMethod file=0]`add()` and [hotspot=listMethod file=0]`list()` methods with the [hotspot=addWithSpan hotspot=listWithSpan file=0]`@WithSpan` annotation. Then, the OpenTelemetry instrumentation will provide a new span for each method. This will allow you to collect and trace the spans across different services. Additionally, you can annotate the [hotspot=spanAttribute file=0]`host` parameter with the [hotspot=spanAttribute file=0]`@SpanAttribute` annotation with a customized value to indicate that it is part of the trace.
+The [hotspot=addMethod file=0]`add()` and [hotspot=listMethod file=0]`list()` methods are annotated with the [hotspot=addWithSpan hotspot=listWithSpan file=0]`@WithSpan` annotation. The OpenTelemetry instrumentation provides a new span for each method. You can now collect and trace the spans across different services. The [hotspot=spanAttribute file=0]`host` parameter is also annotated with the [hotspot=spanAttribute file=0]`@SpanAttribute` annotation with a customized value to indicate that it is part of the trace.
 
 //To customize a span name, you can annotate the `list()` method by the [hotspot=listWithSpan file=0]`@WithSpan` annotation with a value.
 
