@@ -41,7 +41,7 @@ One way to increase observability of an application is by emitting traces. https
 
 Traces represent requests, which can contain multiple operations, or spans. Each span comprises a name, time-related data, log messages, and metadata that describe what occurred during a transaction. Spans are associated with a context, which identifies the request within which the span occurred. Developers can then follow a single request between services through a potentially complex distributed system. Exporters send the data that MicroProfile Telemetry 1.0 collects to Jaeger so you can visualize and monitor the generated spans.
 
-You'll configure the provided `system` and `inventory` services to use https://www.jaegertracing.io/[Jaeger^] for distributed tracing with MicroProfile Telemetry. You'll run these services in two separate JVMs made of two server instances to demonstrate tracing in a distributed environment as shown in the diagram below.
+For simplicity, you'll configure the provided `system` and `inventory` services to use https://www.jaegertracing.io/[Jaeger^] for distributed tracing with MicroProfile Telemetry. You'll run these services in two separate JVMs made of two server instances to demonstrate tracing in a distributed environment as shown in the diagram below.
 
 image::architecture_diagram.png[Application architecture,align="center"]
 
@@ -409,7 +409,7 @@ InventoryManager.java
 include::finish/inventory/src/main/java/io/openliberty/guides/inventory/InventoryManager.java[]
 ----
 
-The [hotspot=addMethod file=0]`add()` and [hotspot=listMethod file=0]`list()` methods are annotated with the [hotspot=addWithSpan hotspot=listWithSpan file=0]`@WithSpan` annotation. The OpenTelemetry instrumentation provides a new span for each method. You can now collect and trace the spans across different services. After creating a span, you have the option to include desired parameters with their values in the span by using the [hotspot=spanAttribute file=0]`@SpanAttribute` annotation. For example, you can annotate the [hotspot=spanAttribute file=0]`host` parameter with the [hotspot=spanAttribute file=0]`@SpanAttribute` annotation and assign [hotspot=spanAttribute file=0]`hostname` as its attribute name. This allows you to trace the parameters within the [hotspot=addMethod file=0]`add` span.
+The [hotspot=addMethod file=0]`add()` and [hotspot=listMethod file=0]`list()` methods are annotated with the [hotspot=addWithSpan hotspot=listWithSpan file=0]`@WithSpan` annotation. The OpenTelemetry instrumentation provides a new span for each method. You can now collect and trace the spans across different services. After creating a span, you have the option to include desired parameters with their values in the span by using the [hotspot=spanAttribute file=0]`@SpanAttribute` annotation. For example, the [hotspot=spanAttribute file=0] `host` parameter can be assigned [hotspot=spanAttribute file=0] `hostname` as its attribute name using the [hotspot=spanAttribute file=0]`@SpanAttribute` annotation, which gives the benefit of tracing the parameters within the [hotspot=addMethod file=0] `add` span.
 
 //To customize a span name, you can annotate the `list()` method by the [hotspot=listWithSpan file=0]`@WithSpan` annotation with a value.
 
