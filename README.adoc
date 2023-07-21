@@ -1,10 +1,10 @@
-//  Copyright (c) 2023 IBM Corporation and others.
+// Copyright (c) 2023 IBM Corporation and others.
 // Licensed under Creative Commons Attribution-NoDerivatives
 // 4.0 International (CC BY-ND 4.0)
-//   https://creativecommons.org/licenses/by-nd/4.0/
+// https://creativecommons.org/licenses/by-nd/4.0/
 //
 // Contributors:
-//     IBM Corporation
+// IBM Corporation
 //
 :page-layout: guide-multipane
 :projectid: microprofile-telemetry-jaeger
@@ -67,7 +67,7 @@ include::{common-includes}/gitclone.adoc[]
 
 // cloud-hosted guide instructions:
 ifdef::cloud-hosted[]
-Run the following docker command to start the Jaeger server:
+Run the following Docker command to start the Jaeger server:
 ```bash 
 docker run -d --name jaeger \
   -e COLLECTOR_ZIPKIN_HOST_PORT=:9411 \
@@ -158,7 +158,7 @@ Select the services in the **Select A Service** menu and click the **Find Traces
 image::inventory_service_spans.png[Get traces for the inventory service,align="center"]
 
 
-The trace has five spans, four from `inventory` service and one from `system` service. Click the trace to view its details. Under **Service & Operation**, you see the spans in this trace. You can inspect each span by clicking it to reveal more detailed information, such as the time at which a request was received and the time at which a response was sent back.
+The trace has five spans, four from the `inventory` service and one from the `system` service. Click the trace to view its details. Under **Service & Operation**, you see the spans in this trace. You can inspect each span by clicking it to reveal more detailed information, such as the time at which a request was received and the time at which a response was sent back.
 
 image::inventory_details_spans.png[Inventory details spans,align="center"]
 
@@ -266,7 +266,7 @@ endif::[]
 
 Navigate to the `start` directory to begin.
 
-MicroProfile Telemetry allows you to observe traces without modifying source code in your Jakarta RESTful applications. You can enable `mpTelemetry` feature in the `server.xml` configuration file.
+MicroProfile Telemetry allows you to observe traces without modifying source code in your Jakarta RESTful applications. You can enable the `mpTelemetry` feature in the `server.xml` configuration file.
 
 [role="code_command hotspot file=0", subs="quotes"]
 ----
@@ -350,7 +350,7 @@ You can view the traces for the `system` or `inventory` services under the **Sea
 image::default_spans.png[Default spans,align="center"]
 
 
-Verify that there are two spans from `inventory` service and one span from `system` service. Click the trace to view its details.
+Verify that there are two spans from the `inventory` service and one span from the `system` service. Click the trace to view its details.
 
 image::details_default_spans.png[Details default spans,align="center"]
 
@@ -436,7 +436,7 @@ Select the `inventory` service and click the **Find Traces** button at the end o
 image::inventory_manager_span.png[Inventory Manager span,align="center"]
 
 
-Verify that there are two spans from the `inventory` service. Click the trace to view its details. You'll see the  `InventoryManager.list` span that is created by the `@WithSpan` annotation.
+Verify that there are two spans from the `inventory` service. Click the trace to view its details. You'll see the `InventoryManager.list` span that is created by the `@WithSpan` annotation.
 
 image::inventory_manager_list_span.png[Inventory Manager list span,align="center"]
 {empty} +
@@ -497,9 +497,9 @@ When starting a span, you also need to end it by calling [hotspot=end file=0]`en
 
 After starting the span, you make it current with the [hotspot=scope file=0]`makeCurrent()` call. Making a span current means that any new spans created in the same thread (either automatically by open liberty, or manually by calling the API) will use this span as their parent span.
 
-The `makeCurrent()` call returns a `Scope`. It's very important to always close the `Scope`, which stops the span being current and makes the previous span current again. The recommended way to do this is to use a [hotspot=try file=0]`try-with-resources` block, which makes sure that the `Scope` is automatically closed at the end of the block.
+The `makeCurrent()` call returns a `Scope`. It's very important to always close the `Scope`, which stops the span from being current and makes the previous span current again. The recommended way to do this is to use a [hotspot=try file=0]`try-with-resources` block, which makes sure that the `Scope` is automatically closed at the end of the block.
 
-Use the [hotspot=addEvent1 hotspot=addEvent2 file=0]`addEvent()` Span API to create an event when the properties are received and an event when fails to get the properties from the [hotspot=manager hotspot=getSystem file=0]`system` service. Use the [hotspot=end file=0]`end()` Span API to mark the `GettingProperties` span completed.
+Use the [hotspot=addEvent1 hotspot=addEvent2 file=0]`addEvent()` Span API to create an event when the properties are received and an event when it fails to get the properties from the [hotspot=manager hotspot=getSystem file=0]`system` service. Use the [hotspot=end file=0]`end()` Span API to mark the `GettingProperties` span as completed.
 
 
 ifndef::cloud-hosted[]
@@ -522,7 +522,7 @@ Select the `inventory` service and click the **Find Traces** button at the end o
 image::inventory_service_spans.png[Get traces for the inventory service,align="center"]
 
 
-Verify that there are four spans from `inventory` service and one span from `system` service. Click the trace to view its details. You'll see the `GettingProperties` span.
+Verify that there are four spans from the `inventory` service and one span from the `system` service. Click the trace to view its details. You'll see the `GettingProperties` span.
 
 image::inventory_details_spans.png[Inventory details spans,align="center"]
 {empty} +
@@ -561,7 +561,7 @@ To learn more about how to use OpenTelemetry APIs to instrument code, see the ht
 // =================================================================================================
 == Testing the application 
 
-Manually verify the traces by inspecting them on the Jaeger server. You will find some tests that are included to assess the basic functionality of the services. If any of the tests fail, it might indicate a potential bug in the code.
+Manually verify the traces by inspecting them on the Jaeger server. You will find some tests included to assess the basic functionality of the services. If any of the tests fail, it might indicate a potential bug in the code.
 
 === Running the tests
 
