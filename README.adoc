@@ -23,25 +23,26 @@
 :page-seo-description: A getting started tutorial and an example on how to enable distributed tracing in Java microservices to easily trace request flows that span multiple resources by using MicroProfile Telemetry and Jaeger distributed tracing system.​
 :source-highlighter: prettify
 :guide-author: Open Liberty
-= Enabling distributed tracing in microservices using OpenTelemetry observability framework 
+
+= Enabling distributed tracing in microservices by using the OpenTelemetry observability framework 
 
 [.hidden]
-NOTE: This repository contains the guide documentation source. To view the guide in published form, view it on the https://openliberty.io/guides/{projectid}.html[Open Liberty website].
+NOTE: This repository contains the guide documentation source. To view the guide in published form, view it at the https://openliberty.io/guides/{projectid}.html[Open Liberty website].
 
-Distributed tracing helps teams to keep track of requests between microservices. MicroProfile Telemetry adopts OpenTelemetry tracing to allow developers to observe requests across their distributed systems.
+Distributed tracing helps teams keep track of requests between microservices. MicroProfile Telemetry adopts OpenTelemetry tracing to allow developers to observe requests across their distributed systems.
 
 // =================================================================================================
 //  What you'll learn
 // =================================================================================================
 
 == What you'll learn
-The use of a microservices architecture can increase the difficulty of understanding how services depend on or affect other services. Consequently, this makes it harder to identify the source of latency or inaccuracies.
+The use of a microservices architecture can increase the difficulty of understanding how services depend on or affect other services. Therefore, It makes it harder to identify the source of latency or inaccuracies.
 
-One way to increase observability of an application is by emitting traces. https://opentelemetry.io/[OpenTelemetry^] is a set of APIs, SDKs, tooling, and integrations that are designed for the creation and management of telemetry data such as traces, metrics, and logs. MicroProfile Telemetry adopts OpenTelemetry so your applications can benefit from both manual and automatic traces.
+One way to increase the observability of an application is by emitting traces. https://opentelemetry.io/[OpenTelemetry^] is a set of APIs, SDKs, tooling, and integrations that are designed for the creation and management of telemetry data such as traces, metrics, and logs. MicroProfile Telemetry adopts OpenTelemetry, so your applications can benefit from both manual and automatic traces.
 
-Traces represent requests, which can contain multiple operations, or spans. Each span comprises a name, time-related data, log messages, and metadata that describe what occurred during a transaction. Spans are associated with a context, which identifies the request within which the span occurred. Developers can then follow a single request between services through a potentially complex distributed system. Exporters send the data that MicroProfile Telemetry 1.0 collects to Jaeger so you can visualize and monitor the generated spans.
+Traces represent requests, which can contain multiple operations or spans. Each span comprises a name, time-related data, log messages, and metadata that describes what occurred during a transaction. Spans are associated with a context, which identifies the request within which the span occurred. Developers can then follow a single request between services through a potentially complex distributed system. Exporters send the data that MicroProfile Telemetry 1.0 collects to Jaeger so you can visualize and monitor the generated spans.
 
-The diagram shows multiple services, which is where distributed tracing is really valuable. However, for simplicity, in this guide you'll configure only the `system` and `inventory` services to use https://www.jaegertracing.io/[Jaeger^] for distributed tracing with MicroProfile Telemetry. You'll run these services in two separate JVMs made of two server instances to demonstrate tracing in a distributed environment.
+The diagram shows multiple services, which is where distributed tracing is valuable. However, for simplicity, in this guide, you'll configure only the `system` and `inventory` services to use https://www.jaegertracing.io/[Jaeger^] for distributed tracing with MicroProfile Telemetry. You'll run these services in two separate JVMs made of two server instances to demonstrate tracing in a distributed environment.
 
 image::architecture_diagram.png[Application architecture,align="center"]
 
@@ -52,7 +53,7 @@ image::architecture_diagram.png[Application architecture,align="center"]
 
 == Additional prerequisites 
 
-Before you begin, deploy the Jaeger all-in-one executable file to start the Jaeger tracing system. The Jaeger all-in-one executable file is configured for quick local testing. Jaeger 1.46 or later is recommended. You can find information about the Jaeger server and instructions for starting the all-in-one executable file in the https://www.jaegertracing.io/docs/latest/getting-started[Jaeger documentation].
+Before you begin, deploy the Jaeger all-in-one executable file to start the Jaeger tracing system. The Jaeger all-in-one executable file is configured for quick local testing. Jaeger 1.46 or later is recommended. You can find information about the Jaeger server, and the instructions for starting the all-in-one executable file in the https://www.jaegertracing.io/docs/latest/getting-started[Jaeger documentation].
 
 Before you proceed, make sure that your Jaeger server is up and running by visiting the http://localhost:16686 URL.
 
@@ -66,7 +67,7 @@ include::{common-includes}/gitclone.adoc[]
 
 // cloud-hosted guide instructions:
 ifdef::cloud-hosted[]
-Run the following docker command to start Jaeger server:
+Run the following docker command to start the Jaeger server:
 ```bash 
 docker run -d --name jaeger \
   -e COLLECTOR_ZIPKIN_HOST_PORT=:9411 \
@@ -560,7 +561,7 @@ To learn more about how to use OpenTelemetry APIs to instrument code, see the ht
 // =================================================================================================
 == Testing the application 
 
-Manually verify the traces by viewing them on the Jaeger server. A few tests are included for you to test the basic functionality of the services. If a test failure occurs, then you might have introduced a bug into the code.
+Manually verify the traces by inspecting them on the Jaeger server. You will find some tests that are included to assess the basic functionality of the services. If any of the tests fail, it might indicate a potential bug in the code.
 
 === Running the tests
 
