@@ -29,7 +29,7 @@
 [.hidden]
 NOTE: This repository contains the guide documentation source. To view the guide in published form, view it at the https://openliberty.io/guides/{projectid}.html[Open Liberty website].
 
-Distributed tracing helps teams keep track of requests between microservices. MicroProfile Telemetry adopts OpenTelemetry tracing to allow developers to observe requests across their distributed systems.
+Distributed tracing helps teams keep track of requests between microservices. MicroProfile Telemetry adopts OpenTelemetry tracing, allowing developers to observe requests across their distributed systems.
 
 // =================================================================================================
 //  What you'll learn
@@ -38,7 +38,7 @@ Distributed tracing helps teams keep track of requests between microservices. Mi
 == What you'll learn
 The use of a microservices architecture can increase the difficulty of understanding how services depend on or affect other services. Therefore, It makes it harder to identify the source of latency or inaccuracies.
 
-One way to increase the observability of an application is by emitting traces. https://opentelemetry.io/[OpenTelemetry^] is a set of APIs, SDKs, tooling, and integrations that are designed for the creation and management of telemetry data such as traces, metrics, and logs. MicroProfile Telemetry adopts OpenTelemetry, so your applications can benefit from both manual and automatic traces.
+One way to increase the observability of an application is by emitting traces. https://opentelemetry.io/[OpenTelemetry^] is a set of APIs, SDKs, tooling, and integrations designed to create and manage telemetry data such as traces, metrics, and logs. MicroProfile Telemetry adopts OpenTelemetry, so your applications can benefit from both manual and automatic traces.
 
 Traces represent requests, which can contain multiple operations or spans. Each span comprises a name, time-related data, log messages, and metadata that describes what occurred during a transaction. Spans are associated with a context, which identifies the request within which the span occurred. Developers can then follow a single request between services through a potentially complex distributed system. Exporters send the data that MicroProfile Telemetry 1.0 collects to Jaeger so you can visualize and monitor the generated spans.
 
@@ -135,9 +135,9 @@ The defaultServer server is ready to run a smarter planet.
 ----
 
 ifndef::cloud-hosted[]
-Make sure that your Jaeger server is running and point your browser to the http://localhost:9081/inventory/systems/localhost URL.
+Make sure that your Jaeger server is running and navigate your browser to the http://localhost:9081/inventory/systems/localhost URL.
 
-When you visit this endpoint, you make two GET HTTP requests, one to the `system` service and one to the `inventory` service. Both of these requests are configured to be traced, so a new trace is recorded in Jaeger. To view the traces, go to the http://localhost:16686 URL.
+When you visit this endpoint, make two GET HTTP requests, one to the `system` service and another to the `inventory` service. Both of these requests are configured to be traced, so a new trace is recorded in Jaeger. To view the traces, go to the http://localhost:16686 URL.
 endif::[]
 
 ifdef::cloud-hosted[]
@@ -146,14 +146,14 @@ Open another command-line session and run the following curl command from the te
 curl -s http://localhost:9081/inventory/systems/localhost | jq
 ```
 
-When you visit this endpoint, you make two GET HTTP requests, one to the ***system*** service and one to the ***inventory*** service. Both of these requests are configured to be traced, so a new trace is recorded in Jaeger. To view the traces, click the following button to visit the Jaeger service:
+When you visit this endpoint, make two GET HTTP requests, one to the ***system*** service and another to the ***inventory*** service. Both of these requests are configured to be traced, so a new trace is recorded in Jaeger. To view the traces, click the following button to visit the Jaeger service:
 
 ::startApplication{port="16686" display="external" name="Visit Jaeger service" route="/"}
 endif::[]
 
-You can view the traces for the `system` or `inventory` services under the **Search** tab. If you see only the **jaeger-query** option that is listed in the dropdown, wait a little longer and refresh the page to see the application services.
+You can view the traces for the `system` or `inventory` services under the **Search** tab. If you see only the **jaeger-query** option that is listed in the drop-down, wait a little longer and refresh the page to see the application services.
 
-Select the services in the **Select A Service** menu and click the **Find Traces** button at the end of the section. You'll see the result as:
+Select the services in the **Select A Service** menu and click the **Find Traces** button at the end of the section. You will see the following result:
 
 image::inventory_service_spans.png[Get traces for the inventory service,align="center"]
 
@@ -266,7 +266,7 @@ endif::[]
 
 Navigate to the `start` directory to begin.
 
-MicroProfile Telemetry allows you to observe traces without modifying source code in your Jakarta RESTful applications. You can enable the `mpTelemetry` feature in the `server.xml` configuration file.
+MicroProfile Telemetry allows you to observe traces without modifying the source code in your Jakarta RESTful applications. You can enable the `mpTelemetry` feature in the `server.xml` configuration file.
 
 [role="code_command hotspot file=0", subs="quotes"]
 ----
@@ -297,11 +297,11 @@ include::finish/inventory/src/main/liberty/config/server.xml[]
 The [hotspot=mpTelemetry file=1]`mpTelemetry` feature is now enabled in the `server.xml` of the `inventory` service.
 
 
-By default, MicroProfile Telemetry tracing is off. To enable any tracing aspects, specify the `otel` properties in the MicroProfile configuration file. 
+By default, MicroProfile Telemetry tracing is `off`. To enable any tracing aspects, specify the `otel` properties in the MicroProfile configuration file. 
 
 [role="code_command hotspot file=2", subs="quotes"]
 ----
-#Create the `microprofile-config.properties` file  of the system service:#
+#Create the `microprofile-config.properties` file of the system service:#
 `system/src/main/resources/META-INF/microprofile-config.properties`
 ----
 
@@ -457,12 +457,12 @@ Click the following button to visit the Jaeger service:
 endif::[]
 
 
-Select the `inventory` service and click the **Find Traces** button at the end of the section. You'll see the result as:
+Select the `inventory` service and click the **Find Traces** button at the end of the section. You will see the following result:
 
 image::inventory_service_4_spans.png[Get traces for the inventory service,align="center"]
 
 
-Verify that there are three spans from `inventory` service and one span from `system` service. Click the trace to view its details.
+Verify that there are three spans from the `inventory` service and one span from the `system` service. Click the trace to view its details.
 
 image::inventory_details_4_spans.png[Inventory details spans,align="center"]
 
@@ -491,13 +491,13 @@ include::finish/inventory/src/main/java/io/openliberty/guides/inventory/Inventor
 
 In order to access the Tracer, the [hotspot=inject file=0]`@Inject` annotation from the Contexts and Dependency Injections API injects the Tracer into a bean. 
 
-Before the [hotspot=manager hotspot=getSystem file=0]`InventoryManager` calls the `system` service, it creates and starts a span called [hotspot=getPropertiesSpan file=0]`GettingProperties` by using the `spanBuilder()` and `startSpan()` Tracer APIs.
+Before the [hotspot=manager hotspot=getSystem file=0]`InventoryManager` calls the `system` service, it creates and starts a span called the [hotspot=getPropertiesSpan file=0]`GettingProperties` span by using the `spanBuilder()` and `startSpan()` Tracer APIs.
 
 When starting a span, you also need to end it by calling [hotspot=end file=0]`end()` on the span. If you don't end a span, it won't be recorded at all and won't show up in Jaeger. This code ensures that [hotspot=end file=0]`end()` is always called by including it in a `finally` block.
 
 After starting the span, you make it current with the [hotspot=scope file=0]`makeCurrent()` call. Making a span current means that any new spans created in the same thread (either automatically by open liberty, or manually by calling the API) will use this span as their parent span.
 
-The `makeCurrent()` call returns a `Scope`. It's very important to always close the `Scope`, which stops the span from being current and makes the previous span current again. The recommended way to do this is to use a [hotspot=try file=0]`try-with-resources` block, which makes sure that the `Scope` is automatically closed at the end of the block.
+The `makeCurrent()` call returns a `Scope`. It is important to always close the `Scope`, which stops the span from being current and makes the previous span current again. The recommended way to do this is to use a [hotspot=try file=0]`try-with-resources` block, which makes sure that the `Scope` is automatically closed at the end of the block.
 
 Use the [hotspot=addEvent1 hotspot=addEvent2 file=0]`addEvent()` Span API to create an event when the properties are received and an event when it fails to get the properties from the [hotspot=manager hotspot=getSystem file=0]`system` service. Use the [hotspot=end file=0]`end()` Span API to mark the `GettingProperties` span as completed.
 
@@ -542,12 +542,12 @@ Click the following button to visit the Jaeger service:
 ::startApplication{port="16686" display="external" name="Visit Jaeger service" route="/"}
 endif::[]
 
-Select the `inventory` service and click the **Find Traces** button at the end of the section. You'll see the result as:
+Select the `inventory` service and click the **Find Traces** button at the end of the section. You will see the following result:
 
 image::inventory_service_unknown_spans.png[Get traces for unknown hostname,align="center"]
 
 
-There are two spans from `inventory` service. Click the trace to view its details. You'll see the `GettingProperties` span. Click the `GettingProperties` span and its `Logs`. You can see the `Cannot get properties` message.
+There are two spans from the `inventory` service. Click the trace to view its details. You'll see the `GettingProperties` span. Click the `GettingProperties` span and its `Logs`. You can see the `Cannot get properties` message.
 
 image::logs_at_gettingProperties.png[Logs at GettingProperties span,align="center"]
 {empty} +
