@@ -24,7 +24,7 @@
 :source-highlighter: prettify
 :guide-author: Open Liberty
 
-= Enabling distributed tracing in microservices by using the OpenTelemetry observability framework 
+= Enabling distributed tracing in microservices with OpenTelemetry and Jaeger
 
 [.hidden]
 NOTE: This repository contains the guide documentation source. To view the guide in published form, view it on the https://openliberty.io/guides/{projectid}.html[Open Liberty website].
