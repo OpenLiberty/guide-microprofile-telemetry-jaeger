@@ -158,7 +158,7 @@ Select the services in the **Select A Service** menu and click the **Find Traces
 image::inventory_service_spans.png[Get traces for the inventory service,align="center"]
 
 
-The trace has five spans, four from the `inventory` service and one from the `system` service. Click the trace to view its details. Under **Service & Operation**, you see the spans in this trace. You can inspect each span by clicking it to reveal more detailed information, such as the time at which a request was received and the time at which a response was sent back.
+The trace has five spans, four from the `inventory` service and one from the `system` service. Click the trace to view its details. Under **Service & Operation**, you see the spans in this trace. You can inspect each span by clicking it to reveal more detailed information, such as the times that a request was received and a response was sent.
 
 image::inventory_details_spans.png[Inventory details spans,align="center"]
 
