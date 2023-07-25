@@ -27,7 +27,7 @@
 = Enabling distributed tracing in microservices by using the OpenTelemetry observability framework 
 
 [.hidden]
-NOTE: This repository contains the guide documentation source. To view the guide in published form, view it at the https://openliberty.io/guides/{projectid}.html[Open Liberty website].
+NOTE: This repository contains the guide documentation source. To view the guide in published form, view it on the https://openliberty.io/guides/{projectid}.html[Open Liberty website].
 
 Distributed tracing helps teams keep track of requests between microservices. MicroProfile Telemetry adopts OpenTelemetry tracing, so you can observe requests across your distributed systems.
 
