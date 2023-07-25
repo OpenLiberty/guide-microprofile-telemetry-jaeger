@@ -491,7 +491,7 @@ include::finish/inventory/src/main/java/io/openliberty/guides/inventory/Inventor
 
 To access the Tracer, the [hotspot=inject file=0]`@Inject` annotation from the Contexts and Dependency Injections API injects the Tracer into a bean. 
 
-Before the [hotspot=manager hotspot=getSystem file=0]`InventoryManager` calls the `system` service, it creates and starts a span called the [hotspot=getPropertiesSpan file=0]`GettingProperties` span by using the `spanBuilder()` and `startSpan()` Tracer APIs.
+Before the [hotspot=manager hotspot=getSystem file=0]`InventoryManager` calls the `system` service, it creates and starts a span called the [hotspot=getPropertiesSpan file=0]`GettingProperties` by using the `spanBuilder()` and `startSpan()` Tracer APIs.
 
 When you start a span, you must also end it by calling [hotspot=end file=0]`end()` on the span. If you don't end a span, it won't be recorded at all and won't show up in Jaeger. This code ensures that [hotspot=end file=0]`end()` is always called by including it in a `finally` block.
 
