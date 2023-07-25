@@ -489,7 +489,7 @@ InventoryResource.java
 include::finish/inventory/src/main/java/io/openliberty/guides/inventory/InventoryResource.java[]
 ----
 
-In order to access the Tracer, the [hotspot=inject file=0]`@Inject` annotation from the Contexts and Dependency Injections API injects the Tracer into a bean. 
+To access the Tracer, the [hotspot=inject file=0]`@Inject` annotation from the Contexts and Dependency Injections API injects the Tracer into a bean. 
 
 Before the [hotspot=manager hotspot=getSystem file=0]`InventoryManager` calls the `system` service, it creates and starts a span called the [hotspot=getPropertiesSpan file=0]`GettingProperties` span by using the `spanBuilder()` and `startSpan()` Tracer APIs.
 
