@@ -137,7 +137,7 @@ The defaultServer server is ready to run a smarter planet.
 ifndef::cloud-hosted[]
 Make sure that your Jaeger server is running and navigate your browser to the http://localhost:9081/inventory/systems/localhost URL.
 
-When you visit this endpoint, make two GET HTTP requests, one to the `system` service and another to the `inventory` service. Both of these requests are configured to be traced, so a new trace is recorded in Jaeger. To view the traces, go to the http://localhost:16686 URL.
+When you visit this endpoint, you make two GET HTTP requests, one to the `system` service and another to the `inventory` service. Both of these requests are configured to be traced, so a new trace is recorded in Jaeger. To view the traces, go to the http://localhost:16686 URL.
 endif::[]
 
 ifdef::cloud-hosted[]
