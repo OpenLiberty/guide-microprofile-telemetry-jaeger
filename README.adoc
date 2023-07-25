@@ -146,7 +146,7 @@ Open another command-line session and run the following curl command from the te
 curl -s http://localhost:9081/inventory/systems/localhost | jq
 ```
 
-When you visit this endpoint, make two GET HTTP requests, one to the ***system*** service and another to the ***inventory*** service. Both of these requests are configured to be traced, so a new trace is recorded in Jaeger. To view the traces, click the following button to visit the Jaeger service:
+When you visit this endpoint, you make two GET HTTP requests, one to the ***system*** service and another to the ***inventory*** service. Both of these requests are configured to be traced, so a new trace is recorded in Jaeger. To view the traces, click the following button to visit the Jaeger service:
 
 ::startApplication{port="16686" display="external" name="Visit Jaeger service" route="/"}
 endif::[]
