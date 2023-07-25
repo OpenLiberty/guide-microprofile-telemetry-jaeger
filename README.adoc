@@ -151,7 +151,7 @@ When you visit this endpoint, you make two GET HTTP requests, one to the ***syst
 ::startApplication{port="16686" display="external" name="Visit Jaeger service" route="/"}
 endif::[]
 
-You can view the traces for the `system` or `inventory` services under the **Search** tab. If you see only the **jaeger-query** option that is listed in the drop-down, wait a little longer and refresh the page to see the application services.
+You can view the traces for the `system` or `inventory` services under the **Search** tab. If you see only the **jaeger-query** option in the drop-down menu, wait a little longer and refresh the page to see the application services.
 
 Select the services in the **Select A Service** menu and click the **Find Traces** button at the end of the section. You will see the following result:
 
