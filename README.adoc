@@ -67,7 +67,7 @@ include::{common-includes}/gitclone.adoc[]
 
 // cloud-hosted guide instructions:
 ifdef::cloud-hosted[]
-Run the following Docker command to start the Jaeger server:
+Run the following `docker` command to start the Jaeger server:
 ```bash 
 docker run -d --name jaeger \
   -e COLLECTOR_ZIPKIN_HOST_PORT=:9411 \
