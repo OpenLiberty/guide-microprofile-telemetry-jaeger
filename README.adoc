@@ -561,7 +561,7 @@ To learn more about how to use OpenTelemetry APIs to instrument code, see the ht
 // =================================================================================================
 == Testing the application 
 
-Manually verify the traces by inspecting them on the Jaeger server. You will find some tests included to assess the basic functionality of the services. If any of the tests fail, it might indicate a potential bug in the code.
+Manually verify the traces by inspecting them on the Jaeger server. You will find some tests included to test the basic functionality of the services. If any of the tests fail, you might have introduced a bug into the code.
 
 === Running the tests
 
