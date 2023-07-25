@@ -53,7 +53,7 @@ image::architecture_diagram.png[Application architecture,align="center"]
 
 == Additional prerequisites 
 
-Before you begin, deploy the Jaeger all-in-one executable file to start the Jaeger tracing system. The Jaeger all-in-one executable file is configured for quick local testing. Jaeger 1.46 or later is recommended. You can find information about the Jaeger server, and the instructions for starting the all-in-one executable file in the https://www.jaegertracing.io/docs/latest/getting-started[Jaeger documentation].
+Before you begin, deploy the Jaeger all-in-one executable file to start the Jaeger tracing system. The Jaeger all-in-one executable file is configured for quick local testing. Jaeger 1.46 or later is recommended. You can find information about the Jaeger server and instructions for starting the all-in-one executable file in the https://www.jaegertracing.io/docs/latest/getting-started[Jaeger documentation].
 
 Before you proceed, make sure that your Jaeger server is up and running by visiting the http://localhost:16686 URL.
 
