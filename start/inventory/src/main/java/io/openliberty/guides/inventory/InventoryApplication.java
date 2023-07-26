@@ -1,3 +1,4 @@
+// tag::copyright[]
 /*******************************************************************************
  * Copyright (c) 2023 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
@@ -7,6 +8,7 @@
  *
  * SPDX-License-Identifier: EPL-2.0
  *******************************************************************************/
+// end::copyright[]
 package io.openliberty.guides.inventory;
 
 // JAX-RS
