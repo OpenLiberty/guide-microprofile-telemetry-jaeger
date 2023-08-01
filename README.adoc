@@ -9,7 +9,7 @@
 :page-layout: guide-multipane
 :projectid: microprofile-telemetry-jaeger
 :page-duration: 20 minutes
-:page-releasedate: 2023-06-30
+:page-releasedate: 2023-08-01
 :page-guide-category: microprofile
 :page-essential: false
 :page-description: Explore how to enable and customize tracing of microservices using MicroProfile Telemetry and Jaeger tracing system.
