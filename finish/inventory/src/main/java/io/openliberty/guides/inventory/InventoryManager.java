@@ -45,7 +45,7 @@ public class InventoryManager {
     }
 
     // tag::addWithSpan[]
-    @WithSpan
+    @WithSpan("My Span")
     // end::addWithSpan[]
     // tag::addMethod[]
     // tag::spanAttribute[]
