@@ -52,7 +52,7 @@ public class InventoryManager {
         return new InventoryList(systems);
     }
     // end::listMethod[]
-        
+
     // tag::addWithSpan[]
     @WithSpan("Inventory Manager Add")
     // end::addWithSpan[]
