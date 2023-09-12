@@ -466,7 +466,7 @@ Verify that there are three spans from the `inventory` service and one span from
 image::inventory_details_4_spans.png[Inventory details spans,align="center"]
 
 
-Click the `InventoryManager.add` span and its `Tags`. You can see the `hostname` tag with the `localhost` value that is created by the `@SpanAttribute` annotation.
+Click the `My Span` span and its `Tags`. You can see the `hostname` tag with the `localhost` value that is created by the `@SpanAttribute` annotation.
 
 image::inventory_manager_add_span.png[Inventory Manager add span,align="center"]
 {empty} +
