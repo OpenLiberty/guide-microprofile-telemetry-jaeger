@@ -293,7 +293,7 @@ inventory/server.xml
 include::finish/inventory/src/main/liberty/config/server.xml[]
 ----
 
-The [hotspot=microprofile hotspot=mpTelemetry file=1]`mpTelemetry` feature is now enabled in the `server.xml` of the `inventory` service.
+The [hotspot=mpTelemetry file=1]`mpTelemetry` feature is now enabled in the `server.xml` of the `inventory` service.
 
 
 By default, MicroProfile Telemetry tracing is off. To enable any tracing aspects, specify the `otel` properties in the MicroProfile configuration file. 
