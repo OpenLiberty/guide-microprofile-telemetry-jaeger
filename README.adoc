@@ -310,7 +310,7 @@ system/microprofile-config.properties
 include::finish/system/src/main/resources/META-INF/microprofile-config.properties[]
 ----
 
-The MicroProfile properties file sets the [hotspot=service file=2]`otel.service.name` property with the `system` service name and sets the [hotspot=disabled file=2]`otel.sdk.disabled` property to `false` to enable tracing.
+The MicroProfile properties file sets the [hotspot=service file=2]`otel.service.name` property with the `system` service name, sets the [hotspot=disabled file=2]`otel.sdk.disabled` property to `false` to enable tracing, sets the [hotspot=metrics file=2]`otel.metrics.exporter` property to `none` to disable metrics, and sets the [hotspot=logs file=2]`otel.logs.exporter` property to `none` to disable exporting logs.
 
 
 [role="code_command hotspot file=3", subs="quotes"]
