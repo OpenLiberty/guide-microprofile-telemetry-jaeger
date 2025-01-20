@@ -327,7 +327,7 @@ include::finish/inventory/src/main/resources/META-INF/microprofile-config.proper
 
 Similarly, specify the [hotspot=otel file=3]`otel` properties for the `inventory` service.
 
-For more information about these and other Telemetry properties, see the https://openliberty.io/docs/latest/microprofile-config-properties.html#telemetry[MicroProfile Config properties for MicroProfile Telemetry^] documentation.
+For more information about these and other Telemetry properties, see the https://openliberty.io/docs/latest/reference/microprofile-config-properties.html#telemetry[MicroProfile Config properties for MicroProfile Telemetry^] documentation.
 
 ifndef::cloud-hosted[]
 To run the `system` and `inventory` services, simply navigate your browser to the http://localhost:9081/inventory/systems/localhost URL. To view the traces, go to the http://localhost:16686 URL.
