@@ -1,4 +1,4 @@
-// Copyright (c) 2023, 2024 IBM Corporation and others.
+// Copyright (c) 2023, 2025 IBM Corporation and others.
 // Licensed under Creative Commons Attribution-NoDerivatives
 // 4.0 International (CC BY-ND 4.0)
 // https://creativecommons.org/licenses/by-nd/4.0/
@@ -279,7 +279,7 @@ system/server.xml
 include::finish/system/src/main/liberty/config/server.xml[]
 ----
 
-The [hotspot=mpTelemetry file=0]`mpTelemetry` feature is now enabled in the `server.xml` of the `system` service.
+The [hotspot=microprofile hotspot=mpTelemetry file=0]`mpTelemetry` feature is now enabled in the `server.xml` of the `system` service.
 
 [role="code_command hotspot file=1", subs="quotes"]
 ----
@@ -310,7 +310,7 @@ system/microprofile-config.properties
 include::finish/system/src/main/resources/META-INF/microprofile-config.properties[]
 ----
 
-The MicroProfile properties file sets the [hotspot=service file=2]`otel.service.name` property with the `system` service name and sets the [hotspot=disabled file=2]`otel.sdk.disabled` property to `false` to enable tracing.
+The MicroProfile properties file sets the [hotspot=service file=2]`otel.service.name` property with the `system` service name, sets the [hotspot=disabled file=2]`otel.sdk.disabled` property to `false` to enable tracing, sets the [hotspot=metrics file=2]`otel.metrics.exporter` property to `none` to disable metrics, and sets the [hotspot=logs file=2]`otel.logs.exporter` property to `none` to disable exporting logs.
 
 
 [role="code_command hotspot file=3", subs="quotes"]
@@ -327,7 +327,7 @@ include::finish/inventory/src/main/resources/META-INF/microprofile-config.proper
 
 Similarly, specify the [hotspot=otel file=3]`otel` properties for the `inventory` service.
 
-For more information about these and other Telemetry properties, see the https://openliberty.io/docs/latest/microprofile-config-properties.html#telemetry[MicroProfile Config properties for MicroProfile Telemetry^] documentation.
+For more information about these and other Telemetry properties, see the https://openliberty.io/docs/latest/reference/microprofile-config-properties.html#telemetry[MicroProfile Config properties for MicroProfile Telemetry^] documentation.
 
 ifndef::cloud-hosted[]
 To run the `system` and `inventory` services, simply navigate your browser to the http://localhost:9081/inventory/systems/localhost URL. To view the traces, go to the http://localhost:16686 URL.
