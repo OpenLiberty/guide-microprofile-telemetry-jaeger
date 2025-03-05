@@ -366,20 +366,6 @@ The MicroProfile Telemetry feature has been enabled to trace all REST endpoints 
 
 [role="code_command hotspot file=0", subs="quotes"]
 ----
-#Replace the `pom.xml` Maven project file of the inventory service:#
-`inventory/pom.xml`
-----
-
-pom.xml
-[source, xml, linenums, role='code_column']
-----
-include::finish/inventory/pom.xml[]
-----
-
-The OpenTelemetry API and OpenTelemetry Instrumentation Annotations must be provided as dependencies to your build path. The `pom.xml` now includes two [hotspot=opentelemetry file=0]`io.opentelemetry` dependencies.
-
-[role="code_command hotspot file=1", subs="quotes"]
-----
 #Replace the `server.xml` file of the inventory service:#
 `inventory/src/main/liberty/config/server.xml`
 ----
@@ -390,7 +376,7 @@ inventory/server.xml
 include::finish/inventory/src/main/liberty/config/server.xml[]
 ----
 
-The OpenTelemetry APIs are exposed as third-party APIs in Open Liberty. To add the visibility of OpenTelemetry APIs to the application, add `third-party` to the types of API packages that this class loader supports. Instead of explicitly configuring a list of API packages that includes `third-party`, set the `+third-party` value to the [hotspot=thirdParty file=1]`apiTypeVisibility` attribute in the [hotspot=thirdParty file=1]`classLoader` configuration. This configuration adds `third-party` to the default list of API package types that are supported.
+The OpenTelemetry APIs are exposed as third-party APIs in Open Liberty. To add the visibility of OpenTelemetry APIs to the application, add `third-party` to the types of API packages that this class loader supports. Instead of explicitly configuring a list of API packages that includes `third-party`, set the `+third-party` value to the [hotspot=thirdParty file=0]`apiTypeVisibility` attribute in the [hotspot=thirdParty file=0]`classLoader` configuration. This configuration adds `third-party` to the default list of API package types that are supported.
 
 
 === Enabling tracing in Jakarta CDI beans
