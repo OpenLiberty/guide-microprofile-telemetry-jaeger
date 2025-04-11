@@ -12,7 +12,7 @@
                   httpsPort="${https.port}"
                   id="defaultHttpEndpoint" host="*" />
 
-    <webApplication location="guide-microprofile-telemetry-system.war"
+    <webApplication location="guide-microprofile-telemetry-jaeger-system.war"
                     contextRoot="/" />
 
 </server>
