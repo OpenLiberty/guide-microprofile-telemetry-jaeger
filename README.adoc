@@ -559,12 +559,12 @@ When you are done checking out the services, exit dev mode by pressing `CTRL+C` 
 
 // static guide instructions:
 ifndef::cloud-hosted[]
-Finally, stop the `Jaeger` service that you started in the **Additional prerequisites** section.
+Finally, stop the `Jaeger` service that you started in the **Additional prerequisites** section /*this is non-cloud hosted test. */
 endif::[]
 
 // cloud-hosted guide instructions:
 ifdef::cloud-hosted[]
-Finally, stop the ***Jaeger*** service that you started in the previous step.
+Finally, stop the ***Jaeger*** service that you started in the previous step /*this is cloud hosted test. */
 ```bash
 docker stop jaeger
 docker rm jaeger
@@ -582,11 +582,3 @@ You just used MicroProfile Telemetry in Open Liberty to customize how and which 
 Try out one of the related MicroProfile guides. These guides demonstrate more technologies that you can learn to expand on what you built in this guide.
 
 include::{common-includes}/attribution.adoc[subs="attributes"]
-
-ifdef::cloud-hosted[]
-testing to update the cloud hosted guide
-endif::[]
-
-ifndef::cloud-hosted[]
-testing to update a non-cloud hoted guide
-endif::[]
