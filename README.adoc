@@ -95,34 +95,76 @@ endif::[]
 The `finish` directory in the root of this guide contains the finished application. Give it a try before you proceed.
 
 ifndef::cloud-hosted[]
-Open a command-line session and navigate to the `finish/system` directory. Run the following Maven goal to build the `system` service and deploy it to Open Liberty:
+Open a command-line session and navigate to the `finish` directory. Run the following Maven goal to build the `system` service and deploy it to Open Liberty:
 
-[role="command"]
-----
-mvn liberty:run
-----
+include::{common-includes}/os-tabs.adoc[]
 
-Open another command-line session and navigate to the `finish/inventory` directory. Run the following Maven goal to build the `inventory` service and deploy it to Open Liberty:
+[.tab_content.windows_section]
+--
+[role='command']
+```
+mvnw.cmd -pl system liberty:run
+```
+--
 
-[role="command"]
-----
-mvn liberty:run
-----
+[.tab_content.mac_section]
+--
+[role='command']
+```
+./mvnw -pl system liberty:run
+```
+--
+
+[.tab_content.linux_section]
+--
+[role='command']
+```
+./mvnw -pl system liberty:run
+```
+--
+
+Open another command-line session and navigate to the `finish` directory again. Run the following Maven goal to build the `inventory` service and deploy it to Open Liberty:
+
+include::{common-includes}/os-tabs.adoc[]
+
+[.tab_content.windows_section]
+--
+[role='command']
+```
+mvnw.cmd -pl inventory liberty:run
+```
+--
+
+[.tab_content.mac_section]
+--
+[role='command']
+```
+./mvnw -pl inventory liberty:run
+```
+--
+
+[.tab_content.linux_section]
+--
+[role='command']
+```
+./mvnw -pl inventory liberty:run
+```
+--
 endif::[]
 
 
 // cloud-hosted guide instructions:
 ifdef::cloud-hosted[]
-Navigate to the ***finish/system*** directory. Run the following Maven goal to build the ***system*** service and deploy it to Open Liberty:
+Navigate to the ***finish*** directory. Run the following Maven goal to build the ***system*** service and deploy it to Open Liberty:
 ```bash
-cd /home/project/guide-microprofile-telemetry-jaeger/finish/system
-mvn liberty:run
+cd /home/project/guide-microprofile-telemetry-jaeger/finish
+./mvnw -pl system liberty:run
 ```
 
-Open another command-line session and navigate to the ***finish/inventory*** directory. Run the following Maven goal to build the ***inventory*** service and deploy it to Open Liberty:
+Open another command-line session and navigate to the ***finish*** directory again. Run the following Maven goal to build the ***inventory*** service and deploy it to Open Liberty:
 ```bash
-cd /home/project/guide-microprofile-telemetry-jaeger/finish/inventory
-mvn liberty:run
+cd /home/project/guide-microprofile-telemetry-jaeger/finish
+./mvnw -pl inventory liberty:run
 ```
 endif::[]
 
@@ -167,19 +209,42 @@ After you’re finished reviewing the application, stop the Open Liberty instanc
 
 // static guide instructions:
 ifndef::cloud-hosted[]
-[role="command"]
-----
- mvn -pl system liberty:stop
- mvn -pl inventory liberty:stop
-----
+include::{common-includes}/os-tabs.adoc[]
+
+[.tab_content.windows_section]
+--
+[role='command']
+```
+ mvnw.cmd -pl system liberty:stop
+ mvnw.cmd -pl inventory liberty:stop
+```
+--
+
+[.tab_content.mac_section]
+--
+[role='command']
+```
+ ./mvnw -pl system liberty:stop
+ ./mvnw -pl inventory liberty:stop
+```
+--
+
+[.tab_content.linux_section]
+--
+[role='command']
+```
+ ./mvnw -pl system liberty:stop
+ ./mvnw -pl inventory liberty:stop
+```
+--
 endif::[]
 
 // cloud-hosted guide instructions:
 ifdef::cloud-hosted[]
 ```bash
 cd /home/project/guide-microprofile-telemetry-jaeger/finish
-mvn -pl system liberty:stop
-mvn -pl inventory liberty:stop
+./mvnw -pl system liberty:stop
+./mvnw -pl inventory liberty:stop
 ```
 endif::[]
 
@@ -192,39 +257,81 @@ You need to start the services to see basic traces appear in Jaeger.
 
 When you run Open Liberty in https://openliberty.io/docs/latest/development-mode.html[dev mode^], dev mode listens for file changes and automatically recompiles and deploys your updates whenever you save a new change.
 
-Open a command-line session and navigate to the `start/system` directory. Run the following Maven goal to start the `system` service in dev mode:
+Open a command-line session and navigate to the `start` directory. Run the following Maven goal to start the `system` service in dev mode:
 
 // static guide instructions:
 ifndef::cloud-hosted[]
-[role="command"]
-----
-mvn liberty:dev
-----
+include::{common-includes}/os-tabs.adoc[]
+
+[.tab_content.windows_section]
+--
+[role='command']
+```
+mvnw.cmd -pl system liberty:dev
+```
+--
+
+[.tab_content.mac_section]
+--
+[role='command']
+```
+./mvnw -pl system liberty:dev
+```
+--
+
+[.tab_content.linux_section]
+--
+[role='command']
+```
+./mvnw -pl system liberty:dev
+```
+--
 endif::[]
 
 // cloud-hosted guide instructions:
 ifdef::cloud-hosted[]
 ```bash
-cd /home/project/guide-microprofile-telemetry-jaeger/start/system
-mvn liberty:dev
+cd /home/project/guide-microprofile-telemetry-jaeger/start
+./mvnw -pl system liberty:dev
 ```
 endif::[]
 
-Open a command-line session and navigate to the `start/inventory` directory. Run the following Maven goal to start the `inventory` service in dev mode:
+Open a command-line session and navigate to the `start` directory again. Run the following Maven goal to start the `inventory` service in dev mode:
 
 // static guide instructions:
 ifndef::cloud-hosted[]
-[role="command"]
-----
-mvn liberty:dev
-----
+include::{common-includes}/os-tabs.adoc[]
+
+[.tab_content.windows_section]
+--
+[role='command']
+```
+mvnw.cmd -pl inventory liberty:dev
+```
+--
+
+[.tab_content.mac_section]
+--
+[role='command']
+```
+./mvnw -pl inventory liberty:dev
+```
+--
+
+[.tab_content.linux_section]
+--
+[role='command']
+```
+./mvnw -pl inventory liberty:dev
+```
+--
 endif::[]
 
 // cloud-hosted guide instructions:
 ifdef::cloud-hosted[]
 ```bash
-cd /home/project/guide-microprofile-telemetry-jaeger/start/inventory
-mvn liberty:dev
+cd /home/project/guide-microprofile-telemetry-jaeger/start
+./mvnw -pl inventory liberty:dev
 ```
 endif::[]
 
